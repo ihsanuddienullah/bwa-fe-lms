@@ -1,16 +1,16 @@
-import { createBrowserRouter } from "react-router";
-import ManagerHome from "../pages/ManagerHome";
-import SignIn from "../pages/SignIn";
+import { createBrowserRouter } from 'react-router'
+import ManagerHome from '../pages/ManagerHome'
+import SignIn from '../pages/SignIn'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <ManagerHome />,
   },
   {
-    path: "/manager/sign-in",
+    path: '/manager/sign-in',
     element: <SignIn />,
   }
-]);
+])
 
-export default router;
+export default router
