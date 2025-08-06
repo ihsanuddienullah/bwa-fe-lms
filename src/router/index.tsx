@@ -4,11 +4,11 @@ import SignIn from '../pages/SignIn'
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/manager/sign-in',
     element: <ManagerHome />,
   },
   {
-    path: '/manager/sign-in',
+    path: '/',
     element: <SignIn />,
   },
 ])
