@@ -10,7 +10,7 @@ const router = createBrowserRouter([
   {
     path: '/manager/sign-in',
     element: <SignIn />,
-  }
+  },
 ])
 
 export default router
