@@ -1,4 +1,6 @@
 import { createBrowserRouter } from 'react-router'
+import Layout from '../components/Layout'
+import ManagerHome from '../pages/ManagerHome'
 import Pricing from '../pages/Pricing'
 import SignIn from '../pages/SignIn'
 import SignUp from '../pages/SignUp'
@@ -25,6 +27,11 @@ const router = createBrowserRouter([
   {
     path: '/success-checkout',
     element: <SuccessCheckout />,
+  },
+  {
+    path: '/manager',
+    element: <Layout />,
+    children: [{ index: true, element: <ManagerHome /> }],
   },
 ])
 
