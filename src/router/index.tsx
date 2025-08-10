@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 import Layout from '../components/Layout'
-import ManagerHome from '../pages/ManagerHome'
+import Courses from '../pages/manager/Courses'
+import Overview from '../pages/manager/Overview'
 import Pricing from '../pages/Pricing'
 import SignIn from '../pages/SignIn'
 import SignUp from '../pages/SignUp'
@@ -9,8 +10,7 @@ import SuccessCheckout from '../pages/SuccessCheckout'
 const router = createBrowserRouter([
   {
     path: '/',
-    // element: <ManagerHome />,
-    element: <SignIn />,
+    element: <Overview />,
   },
   {
     path: '/manager/sign-in',
@@ -31,7 +31,13 @@ const router = createBrowserRouter([
   {
     path: '/manager',
     element: <Layout />,
-    children: [{ index: true, element: <ManagerHome /> }],
+    children: [
+      { index: true, element: <Overview /> },
+      {
+        path: 'courses',
+        element: <Courses />,
+      },
+    ],
   },
 ])
 
