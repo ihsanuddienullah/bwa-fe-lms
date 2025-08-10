@@ -3,7 +3,7 @@ import LatestCourse from './_components/LatestCourses'
 import LatestStudents from './_components/LatestStudents'
 import StatsOverview from './_components/StatsOverview'
 
-const ManagerHome = () => {
+const Overview = () => {
   return (
     <div>
       <header className="flex items-center justify-between gap-[30px]">
@@ -37,4 +37,4 @@ const ManagerHome = () => {
   )
 }
 
-export default ManagerHome
+export default Overview
