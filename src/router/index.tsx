@@ -1,11 +1,15 @@
 import { createBrowserRouter } from 'react-router'
 import Layout from '../components/Layout'
-import Courses from '../pages/manager/Courses'
-import Overview from '../pages/manager/Overview'
-import Pricing from '../pages/Pricing'
-import SignIn from '../pages/SignIn'
-import SignUp from '../pages/SignUp'
-import SuccessCheckout from '../pages/SuccessCheckout'
+import {
+  CourseDetail,
+  Courses,
+  CreateCourse,
+  Overview,
+  Pricing,
+  SignIn,
+  SignUp,
+  SuccessCheckout,
+} from '../pages'
 
 const router = createBrowserRouter([
   {
@@ -36,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: 'courses',
         element: <Courses />,
+      },
+      {
+        path: 'courses/create',
+        element: <CreateCourse />,
+      },
+      {
+        path: 'course/:id',
+        element: <CourseDetail />,
       },
     ],
   },

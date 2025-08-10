@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-export interface Course {
+interface CourseProps {
   id: number
   title: string
   thumbnail: string
@@ -8,7 +8,13 @@ export interface Course {
   category: string
 }
 
-const Card = ({ id, title, totalStudents, thumbnail, category }: Course) => {
+const Card = ({
+  id,
+  title,
+  totalStudents,
+  thumbnail,
+  category,
+}: CourseProps) => {
   return (
     <div className="card flex items-center gap-5">
       <div className="flex shrink-0 w-[140px] h-[110px] rounded-[20px] bg-[#D9D9D9] overflow-hidden">
@@ -43,7 +49,7 @@ const Card = ({ id, title, totalStudents, thumbnail, category }: Course) => {
       </div>
       <div className="flex justify-end items-center gap-3">
         <Link
-          to={`/manager/courses/${id}`}
+          to={`/manager/course/${id}`}
           className="w-fit rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"
         >
           Manage

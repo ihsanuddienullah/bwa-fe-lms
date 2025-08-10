@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import Card from './_components/Card'
 import { DUMMY_COURSES } from './dummy'
 
@@ -20,12 +21,12 @@ const Courses = () => {
           >
             Import File
           </a>
-          <a
-            href="create-new-course.html"
+          <Link
+            to="/manager/courses/create"
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             New Course
-          </a>
+          </Link>
         </div>
       </header>
       <section
