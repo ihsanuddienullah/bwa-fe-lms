@@ -1,12 +1,8 @@
-import { useState } from 'react'
 import { Link } from 'react-router'
+import useCustom from './hooks'
 
 const Header = () => {
-  const [profileDropdown, setProfileDropdown] = useState(false)
-
-  const toggleDropdown = () => {
-    setProfileDropdown(!profileDropdown)
-  }
+  const { data, methods } = useCustom()
 
   return (
     <div id="TopBar" className="flex items-center justify-between gap-[30px]">
@@ -36,7 +32,7 @@ const Header = () => {
           type="button"
           id="profileButton"
           className="flex shrink-0 w-[50px] h-[50px] rounded-full overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105"
-          onClick={toggleDropdown}
+          onClick={methods.toggleDropdown}
         >
           <img
             src="/assets/images/photos/photo-1.png"
@@ -47,7 +43,7 @@ const Header = () => {
         <div
           id="ProfileDropdown"
           className={`absolute top-full ${
-            profileDropdown ? 'block' : 'hidden'
+            data.profileDropdown ? 'block' : 'hidden'
           }`}
         >
           <ul className="flex flex-col w-[200px] rounded-[20px] border border-[#CFDBEF] p-5 gap-4 bg-white mt-4">
