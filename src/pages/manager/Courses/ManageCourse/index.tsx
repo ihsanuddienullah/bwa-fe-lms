@@ -6,7 +6,7 @@ const CourseDetail = () => {
   const courseId = useParams().id
 
   return (
-    <div>
+    <>
       <div
         id="Breadcrumb"
         className="flex items-center gap-5 *:after:content-['/'] *:after:ml-5"
@@ -35,12 +35,12 @@ const CourseDetail = () => {
           >
             Edit Course
           </a>
-          <a
-            href="course-learning-video.html"
+          <Link
+            to={`/manager/course/${courseId}/preview`}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Preview
-          </a>
+          </Link>
         </div>
       </header>
       <section id="CourseInfo" className="flex gap-[50px]">
@@ -148,7 +148,7 @@ const CourseDetail = () => {
           </button>
         </div>
       </section>
-    </div>
+    </>
   )
 }
 

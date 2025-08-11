@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router'
 import Layout from '../components/Layout'
 import {
   CourseDetail,
+  CoursePreview,
   Courses,
   CreateContent,
   CreateCourse,
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: 'course/:id',
         element: <CourseDetail />,
+      },
+      {
+        path: 'course/:id/preview',
+        element: <CoursePreview />,
       },
       {
         path: 'course/:id/create-content',
