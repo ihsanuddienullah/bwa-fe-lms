@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import Card from './_components/Card'
+import CourseCard from './_components/CourseCard'
 import { DUMMY_COURSES } from './dummy'
 
 const Courses = () => {
@@ -22,7 +22,7 @@ const Courses = () => {
             Import File
           </a>
           <Link
-            to="/manager/courses/create"
+            to="/manager/courses/create-course"
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             New Course
@@ -34,7 +34,7 @@ const Courses = () => {
         className="flex flex-col w-full rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]"
       >
         {DUMMY_COURSES.map((course) => (
-          <Card
+          <CourseCard
             id={course.id}
             key={course.id}
             title={course.title}

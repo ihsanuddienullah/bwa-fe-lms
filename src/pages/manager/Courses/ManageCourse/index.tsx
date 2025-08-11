@@ -1,6 +1,6 @@
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
+import ContentCard from '../_components/ContentCard'
 import { DUMMY_COURSE_DETAIL } from '../dummy'
-import CardContent from './_components/CardContent'
 
 const CourseDetail = () => {
   const courseId = useParams().id
@@ -97,15 +97,15 @@ const CourseDetail = () => {
           <h2 className="font-bold text-[22px] leading-[33px]">
             Course Content
           </h2>
-          <a
-            href="add-course-content.html"
+          <Link
+            to={`/manager/course/${courseId}/create-content`}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Add Content
-          </a>
+          </Link>
         </div>
         {DUMMY_COURSE_DETAIL.contents.map((content, index) => (
-          <CardContent
+          <ContentCard
             courseId={courseId ? parseInt(courseId) : 0}
             key={content.id}
             id={content.id}

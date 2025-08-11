@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import {
   CourseDetail,
   Courses,
+  CreateContent,
   CreateCourse,
   Overview,
   Pricing,
@@ -42,12 +43,16 @@ const router = createBrowserRouter([
         element: <Courses />,
       },
       {
-        path: 'courses/create',
+        path: 'courses/create-course',
         element: <CreateCourse />,
       },
       {
         path: 'course/:id',
         element: <CourseDetail />,
+      },
+      {
+        path: 'course/:id/create-content',
+        element: <CreateContent />,
       },
     ],
   },
