@@ -5,7 +5,7 @@ import StatsOverview from './_components/StatsOverview'
 
 const Overview = () => {
   return (
-    <div>
+    <>
       <header className="flex items-center justify-between gap-[30px]">
         <div>
           <h1 className="font-extrabold text-[28px] leading-[42px]">
@@ -33,7 +33,7 @@ const Overview = () => {
         <LatestCourse />
         <LatestStudents />
       </div>
-    </div>
+    </>
   )
 }
 

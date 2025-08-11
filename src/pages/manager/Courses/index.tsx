@@ -4,7 +4,7 @@ import { DUMMY_COURSES } from './dummy'
 
 const Courses = () => {
   return (
-    <div>
+    <>
       <header className="flex items-center justify-between gap-[30px]">
         <div>
           <h1 className="font-extrabold text-[28px] leading-[42px]">
@@ -76,7 +76,7 @@ const Courses = () => {
           </button>
         </div>
       </section>
-    </div>
+    </>
   )
 }
 

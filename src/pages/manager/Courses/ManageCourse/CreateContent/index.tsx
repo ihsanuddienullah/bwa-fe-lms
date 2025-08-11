@@ -19,7 +19,7 @@ import 'ckeditor5/ckeditor5.css'
 
 const CreateContent = () => {
   return (
-    <div>
+    <>
       <div
         id="Breadcrumb"
         className="flex items-center gap-5 *:after:content-['/'] *:after:ml-5"
@@ -180,7 +180,7 @@ const CreateContent = () => {
           </button>
         </div>
       </form>
-    </div>
+    </>
   )
 }
 
