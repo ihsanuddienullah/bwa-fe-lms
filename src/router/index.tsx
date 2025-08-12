@@ -10,6 +10,7 @@ import {
   Pricing,
   SignIn,
   SignUp,
+  Students,
   SuccessCheckout,
 } from '../pages'
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: 'course/:id/create-content',
         element: <CreateContent />,
+      },
+      {
+        path: 'students',
+        element: <Students />,
       },
     ],
   },

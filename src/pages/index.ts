@@ -8,6 +8,7 @@ import CourseDetail from './manager/Courses/ManageCourse'
 import CoursePreview from './manager/Courses/ManageCourse/CoursePreview'
 import CreateContent from './manager/Courses/ManageCourse/CreateContent'
 import Overview from './manager/Overview'
+import Students from './manager/Students'
 
 export {
   CourseDetail,
@@ -19,5 +20,6 @@ export {
   Pricing,
   SignIn,
   SignUp,
+  Students,
   SuccessCheckout,
 }

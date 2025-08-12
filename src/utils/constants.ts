@@ -32,7 +32,7 @@ export const SIDEBAR_MENU: MenuSection[] = [
       },
       {
         title: 'Students',
-        path: '/students',
+        path: '/manager/students',
         icon: '/assets/images/icons/profile-2user-white.svg',
       },
     ],
