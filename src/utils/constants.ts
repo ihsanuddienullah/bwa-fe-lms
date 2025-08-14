@@ -2,12 +2,17 @@ interface MenuItem {
   title: string
   path: string
   icon: string
-  isActive?: boolean
+  roles: string[]
 }
 
 interface MenuSection {
   title: string
   items: MenuItem[]
+}
+
+export const ROLES = {
+  MANAGER: 'manager',
+  STUDENT: 'student',
 }
 
 export const SIDEBAR_MENU: MenuSection[] = [
@@ -16,24 +21,27 @@ export const SIDEBAR_MENU: MenuSection[] = [
     items: [
       {
         title: 'Overview',
-        path: '/manager',
+        path: '/',
         icon: '/assets/images/icons/3dcube-white.svg',
-        isActive: true,
+        roles: [ROLES.MANAGER, ROLES.STUDENT],
       },
       {
         title: 'Courses',
         path: '/manager/courses',
         icon: '/assets/images/icons/note-favorite-white.svg',
+        roles: [ROLES.MANAGER],
       },
       {
         title: 'Categories',
         path: '/categories',
         icon: '/assets/images/icons/crown-white.svg',
+        roles: [ROLES.MANAGER],
       },
       {
         title: 'Students',
         path: '/manager/students',
         icon: '/assets/images/icons/profile-2user-white.svg',
+        roles: [ROLES.MANAGER],
       },
     ],
   },
@@ -44,16 +52,19 @@ export const SIDEBAR_MENU: MenuSection[] = [
         title: 'Subscription',
         path: '/subscription',
         icon: '/assets/images/icons/security-card-white.svg',
+        roles: [ROLES.MANAGER, ROLES.STUDENT],
       },
       {
         title: 'Rewards',
         path: '/rewards',
         icon: '/assets/images/icons/cup-white.svg',
+        roles: [ROLES.MANAGER, ROLES.STUDENT],
       },
       {
         title: 'Settings',
         path: '/settings',
         icon: '/assets/images/icons/setting-2-white.svg',
+        roles: [ROLES.MANAGER, ROLES.STUDENT],
       },
     ],
   },

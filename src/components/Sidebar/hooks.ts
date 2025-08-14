@@ -1,10 +1,22 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { SIDEBAR_MENU } from '../../utils/constants'
 
 const useCustom = () => {
   const [activeMenu, setActiveMenu] = useState('Overview')
 
   const toggleMenu = useCallback((menu: string) => {
     setActiveMenu(menu)
+  }, [])
+
+  useEffect(() => {
+    const currentPath = window.location.pathname
+    const menuItem = SIDEBAR_MENU.flatMap((section) => section.items).find(
+      (item) => item.path === currentPath
+    )
+
+    if (menuItem) {
+      setActiveMenu(menuItem.title) // Set the active menu based on the current path
+    }
   }, [])
 
   return {
