@@ -16,7 +16,7 @@ const SuccessCheckout = () => {
         Success Checkout <br />
         Please log in to continue
       </h1>
-      <Link to="/manager/sign-in">
+      <Link to="/sign-in">
         <div className="flex items-center justify-center gap-3 w-max mx-auto mt-5 rounded-full border p-[14px_20px] transition-all duration-300 hover:bg-[#662FFF] hover:border-[#8661EE] hover:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#662FFF] border-[#8661EE] shadow-[-10px_-6px_10px_0_#7F33FF_inset]">
           <span className="font-semibold text-white">Sign in now</span>
         </div>

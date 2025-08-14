@@ -6,25 +6,22 @@ import {
   Courses,
   CreateContent,
   CreateCourse,
-  Overview,
+  ManagerOverview,
   Pricing,
   SignIn,
   SignUp,
+  StudentOverview,
   Students,
   SuccessCheckout,
 } from '../pages'
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Overview />,
-  },
-  {
-    path: '/manager/sign-in',
+    path: '/sign-in',
     element: <SignIn />,
   },
   {
-    path: '/manager/sign-up',
+    path: '/sign-up',
     element: <SignUp />,
   },
   {
@@ -39,32 +36,37 @@ const router = createBrowserRouter([
     path: '/manager',
     element: <Layout />,
     children: [
-      { index: true, element: <Overview /> },
+      { index: true, element: <ManagerOverview /> },
       {
-        path: 'courses',
+        path: '/manager/courses',
         element: <Courses />,
       },
       {
-        path: 'courses/create-course',
+        path: '/manager/courses/create-course',
         element: <CreateCourse />,
       },
       {
-        path: 'course/:id',
+        path: '/manager/course/:id',
         element: <CourseDetail />,
       },
       {
-        path: 'course/:id/preview',
+        path: '/manager/course/:id/preview',
         element: <CoursePreview />,
       },
       {
-        path: 'course/:id/create-content',
+        path: '/manager/course/:id/create-content',
         element: <CreateContent />,
       },
       {
-        path: 'students',
+        path: '/manager/students',
         element: <Students />,
       },
     ],
+  },
+  {
+    path: '/student',
+    element: <Layout role="student" />,
+    children: [{ index: true, element: <StudentOverview /> }],
   },
 ])
 
