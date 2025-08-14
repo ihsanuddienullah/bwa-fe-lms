@@ -7,8 +7,9 @@ import CreateCourse from './manager/Courses/CreateCourse'
 import CourseDetail from './manager/Courses/ManageCourse'
 import CoursePreview from './manager/Courses/ManageCourse/CoursePreview'
 import CreateContent from './manager/Courses/ManageCourse/CreateContent'
-import Overview from './manager/Overview'
+import ManagerOverview from './manager/Overview'
 import Students from './manager/Students'
+import StudentOverview from './student/Overview'
 
 export {
   CourseDetail,
@@ -16,10 +17,11 @@ export {
   Courses,
   CreateContent,
   CreateCourse,
-  Overview,
+  ManagerOverview,
   Pricing,
   SignIn,
   SignUp,
+  StudentOverview,
   Students,
   SuccessCheckout,
 }
