@@ -1,0 +1,27 @@
+import { LATEST_COURSES } from '../dummy'
+import CourseCard from './CourseCard'
+
+const LatestCourses = () => {
+  return (
+    <section
+      id="LatestCourses"
+      className="flex flex-col rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]"
+    >
+      <h2 className="font-extrabold text-[22px] leading-[33px]">
+        Latest Courses
+      </h2>
+      {LATEST_COURSES.map((course) => (
+        <CourseCard
+          key={course.id}
+          id={course.id}
+          thumbnail={course.thumbnail}
+          role="manager"
+          title={course.title}
+          category={course.category}
+        />
+      ))}
+    </section>
+  )
+}
+
+export default LatestCourses

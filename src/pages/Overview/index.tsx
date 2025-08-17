@@ -3,7 +3,15 @@ import LatestCourse from './_components/LatestCourses'
 import LatestStudents from './_components/LatestStudents'
 import StatsOverview from './_components/StatsOverview'
 
-const Overview = () => {
+interface OverviewProps {
+  role?: 'manager' | 'student'
+}
+
+const Overview = ({ role = 'manager' }: OverviewProps) => {
+  if (role === 'student') {
+    return <LatestCourse />
+  }
+
   return (
     <>
       <header className="flex items-center justify-between gap-[30px]">

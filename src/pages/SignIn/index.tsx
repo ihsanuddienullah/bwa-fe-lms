@@ -1,7 +1,9 @@
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import Navbar from '../../components/Navbar'
 
 const SignIn = () => {
+  const navigate = useNavigate()
+
   return (
     <div className="relative flex flex-col flex-1 p-[10px]">
       <div className="absolute w-[calc(100%-20px)] min-h-[calc(100vh-20px)] h-[calc(100%-20px)] bg-[#060A23] -z-10 rounded-[20px]">
@@ -27,7 +29,15 @@ const SignIn = () => {
           </>
         }
       />
-      <form className="flex flex-col w-[400px] h-fit rounded-[20px] border border-[#262A56] p-[30px] gap-[30px] bg-[#080A2A] m-auto">
+      <form
+        className="flex flex-col w-[400px] h-fit rounded-[20px] border border-[#262A56] p-[30px] gap-[30px] bg-[#080A2A] m-auto"
+        onSubmit={(e) => {
+          e.preventDefault()
+          // Handle sign-in logic here
+
+          navigate('/manager/overview')
+        }}
+      >
         <div>
           <h1 className="font-bold text-[26px] leading-[39px] text-white">
             Welcome Back!

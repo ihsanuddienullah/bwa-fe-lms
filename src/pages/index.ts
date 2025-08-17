@@ -1,3 +1,4 @@
+import { default as ManagerOverview, default as Overview } from './Overview'
 import Pricing from './Pricing'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
@@ -7,9 +8,7 @@ import CreateCourse from './manager/Courses/CreateCourse'
 import CourseDetail from './manager/Courses/ManageCourse'
 import CoursePreview from './manager/Courses/ManageCourse/CoursePreview'
 import CreateContent from './manager/Courses/ManageCourse/CreateContent'
-import ManagerOverview from './manager/Overview'
 import Students from './manager/Students'
-import StudentOverview from './student/Overview'
 
 export {
   CourseDetail,
@@ -18,10 +17,10 @@ export {
   CreateContent,
   CreateCourse,
   ManagerOverview,
+  Overview,
   Pricing,
   SignIn,
   SignUp,
-  StudentOverview,
   Students,
   SuccessCheckout,
 }

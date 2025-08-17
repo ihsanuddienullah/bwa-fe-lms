@@ -15,13 +15,15 @@ export const ROLES = {
   STUDENT: 'student',
 }
 
-export const SIDEBAR_MENU: MenuSection[] = [
+export const SIDEBAR_MENU = (
+  role: 'manager' | 'student' = 'manager'
+): MenuSection[] => [
   {
     title: 'GENERAL',
     items: [
       {
         title: 'Overview',
-        path: '/',
+        path: `/${role}/overview`,
         icon: '/assets/images/icons/3dcube-white.svg',
         roles: [ROLES.MANAGER, ROLES.STUDENT],
       },

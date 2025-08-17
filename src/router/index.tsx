@@ -6,16 +6,19 @@ import {
   Courses,
   CreateContent,
   CreateCourse,
-  ManagerOverview,
+  Overview,
   Pricing,
   SignIn,
   SignUp,
-  StudentOverview,
   Students,
   SuccessCheckout,
 } from '../pages'
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <SignIn />,
+  },
   {
     path: '/sign-in',
     element: <SignIn />,
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
     path: '/manager',
     element: <Layout />,
     children: [
-      { index: true, element: <ManagerOverview /> },
+      { path: '/manager/overview', element: <Overview role="manager" /> },
       {
         path: '/manager/courses',
         element: <Courses />,
@@ -66,7 +69,13 @@ const router = createBrowserRouter([
   {
     path: '/student',
     element: <Layout role="student" />,
-    children: [{ index: true, element: <StudentOverview /> }],
+    children: [
+      { path: '/student/overview', element: <Overview role="student" /> },
+      {
+        path: '/student/course/:id/preview',
+        element: <CoursePreview />,
+      },
+    ],
   },
 ])
 

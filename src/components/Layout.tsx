@@ -1,4 +1,4 @@
-import { Outlet, useMatch } from 'react-router'
+import { Outlet, useLocation } from 'react-router'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
@@ -7,7 +7,9 @@ interface LayoutProps {
 }
 
 const Layout = ({ role = 'manager' }: LayoutProps) => {
-  if (useMatch('/manager/course/:id/preview')) return <Outlet />
+  const location = useLocation()
+
+  if (location.pathname.includes('preview')) return <Outlet />
 
   return (
     <div className="flex min-h-screen">
