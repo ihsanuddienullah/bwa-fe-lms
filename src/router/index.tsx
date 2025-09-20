@@ -7,11 +7,11 @@ import {
   CreateContent,
   CreateCourse,
   Overview,
+  PaymentStatus,
   Pricing,
   SignIn,
   SignUp,
   Students,
-  SuccessCheckout,
 } from '../pages'
 
 const router = createBrowserRouter([
@@ -32,8 +32,8 @@ const router = createBrowserRouter([
     element: <Pricing />,
   },
   {
-    path: '/success-checkout',
-    element: <SuccessCheckout />,
+    path: '/payment-status',
+    element: <PaymentStatus />,
   },
   {
     path: '/manager',
@@ -49,15 +49,15 @@ const router = createBrowserRouter([
         element: <CreateCourse />,
       },
       {
-        path: '/manager/course/:id',
+        path: '/manager/course/:course_id',
         element: <CourseDetail />,
       },
       {
-        path: '/manager/course/:id/preview',
+        path: '/manager/course/:course_id/preview',
         element: <CoursePreview />,
       },
       {
-        path: '/manager/course/:id/create-content',
+        path: '/manager/course/:course_id/create-content',
         element: <CreateContent />,
       },
       {

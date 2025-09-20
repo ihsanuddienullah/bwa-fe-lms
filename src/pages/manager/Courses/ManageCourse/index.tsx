@@ -3,7 +3,7 @@ import ContentCard from '../_components/ContentCard'
 import { DUMMY_COURSE_DETAIL } from '../dummy'
 
 const CourseDetail = () => {
-  const courseId = useParams().id
+  const courseId = useParams().course_id
 
   return (
     <>
