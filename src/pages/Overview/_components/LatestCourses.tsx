@@ -1,7 +1,11 @@
 import { LATEST_COURSES } from '../dummy'
 import CourseCard from './CourseCard'
 
-const LatestCourses = () => {
+interface LatestCoursesProps {
+  role: 'manager' | 'student'
+}
+
+const LatestCourses = ({ role }: LatestCoursesProps) => {
   return (
     <section
       id="LatestCourses"
@@ -15,7 +19,7 @@ const LatestCourses = () => {
           key={course.id}
           id={course.id}
           thumbnail={course.thumbnail}
-          role="manager"
+          role={role}
           title={course.title}
           category={course.category}
         />
