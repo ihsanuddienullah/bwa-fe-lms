@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
-import { signUpSchema } from './schema'
+import { signUpSchema } from '../../utils/schema'
 import type { TSignUp } from './types'
 
 const useCustom = () => {
@@ -22,7 +22,9 @@ const useCustom = () => {
   )
 
   return {
-    data: { formState },
+    data: {
+      formState,
+    },
     methods: {
       handleSubmit,
       onSubmit,

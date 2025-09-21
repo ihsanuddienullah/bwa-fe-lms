@@ -10,6 +10,8 @@ interface MenuSection {
   items: MenuItem[]
 }
 
+export const STORAGE_KEY = 'STORAGE_KEY'
+
 export const ROLES = {
   MANAGER: 'manager',
   STUDENT: 'student',
