@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router'
-import Layout from '../components/Layout'
+import ProtectedRoute from '../components/ProtectedRoute'
 import {
   CourseDetail,
   CoursePreview,
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/manager',
-    element: <Layout />,
+    element: <ProtectedRoute />,
     children: [
       { path: '/manager/overview', element: <Overview role="manager" /> },
       {
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/student',
-    element: <Layout role="student" />,
+    element: <ProtectedRoute />,
     children: [
       { path: '/student/overview', element: <Overview role="student" /> },
       {
