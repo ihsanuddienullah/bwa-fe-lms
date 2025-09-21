@@ -3,19 +3,20 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 
 interface LayoutProps {
-  role?: 'manager' | 'student'
+  userRole: 'manager' | 'student'
+  userName: string
 }
 
-const Layout = ({ role = 'manager' }: LayoutProps) => {
+const Layout = ({ userRole, userName }: LayoutProps) => {
   const location = useLocation()
 
   if (location.pathname.includes('preview')) return <Outlet />
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar role={role} />
+      <Sidebar userRole={userRole} />
       <main className="flex flex-col flex-1 gap-[30px] p-[30px] ml-[290px]">
-        <Header />
+        <Header userName={userName} userRole={userRole} />
         <Outlet />
       </main>
     </div>
