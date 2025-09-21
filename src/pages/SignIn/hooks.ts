@@ -1,17 +1,19 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import secureLocalStorage from 'react-secure-storage'
 import { signIn } from '../../api/services/auth-service'
 import { STORAGE_KEY } from '../../utils/constants'
+import { useAuth } from '../../utils/custom-hooks'
 import { signInSchema } from '../../utils/schema'
 import type { TSignIn } from './types'
 
 const useCustom = () => {
   const navigate = useNavigate()
+  const userData = useAuth()
 
   const { register, handleSubmit, formState } = useForm<TSignIn>({
     resolver: zodResolver(signInSchema),
@@ -42,6 +44,24 @@ const useCustom = () => {
     },
     [mutateAsync, navigate]
   )
+
+  useEffect(() => {
+    if (userData) {
+      if (
+        userData.role === 'manager' &&
+        !window.location.pathname.includes('/manager')
+      ) {
+        navigate('/manager/overview')
+      }
+
+      if (
+        userData.role === 'student' &&
+        !window.location.pathname.includes('/student')
+      ) {
+        navigate('/student/overview')
+      }
+    }
+  }, [navigate, userData])
 
   return {
     data: {
