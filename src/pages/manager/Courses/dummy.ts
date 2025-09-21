@@ -1,6 +1,6 @@
-import type { Course, CourseDetail } from './types'
+import type { ICourse, ICourseDetail } from './types'
 
-export const DUMMY_COURSES: Course[] = [
+export const DUMMY_COURSES: ICourse[] = [
   {
     id: 1,
     title: 'Responsive Design Triclorem Lorem, ipsum dolor.',
@@ -38,7 +38,7 @@ export const DUMMY_COURSES: Course[] = [
   },
 ]
 
-export const DUMMY_COURSE_DETAIL: CourseDetail = {
+export const DUMMY_COURSE_DETAIL: ICourseDetail = {
   id: '1',
   title: 'Mastering React TypeScript 7 Website Development',
   thumbnail: '/assets/images/thumbnails/th-4.png',

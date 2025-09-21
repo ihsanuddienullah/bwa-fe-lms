@@ -3,11 +3,11 @@ import { SIDEBAR_MENU } from '../../utils/constants'
 import useCustom from './hooks'
 
 interface SidebarProps {
-  role?: 'manager' | 'student'
+  userRole?: 'manager' | 'student'
 }
 
-const Sidebar = ({ role = 'manager' }: SidebarProps) => {
-  const { data, methods } = useCustom({ role })
+const Sidebar = ({ userRole = 'manager' }: SidebarProps) => {
+  const { data, methods } = useCustom({ userRole })
 
   return (
     <aside className="sidebar-container fixed h-[calc(100vh-20px)] w-full max-w-[280px] my-[10px] ml-[10px] bg-[#060A23] overflow-hidden flex flex-1 rounded-[20px]">
@@ -16,13 +16,13 @@ const Sidebar = ({ role = 'manager' }: SidebarProps) => {
           <Link to="index.html">
             <img src="/assets/images/logos/logo.svg" alt="logo" />
           </Link>
-          {SIDEBAR_MENU(role).map((section, index) => (
+          {SIDEBAR_MENU(userRole).map((section, index) => (
             <ul key={index} className="flex flex-col gap-4">
               <p className="font-semibold text-xs leading-[18px] text-white">
                 {section.title}
               </p>
               {section.items
-                .filter((item) => item.roles.includes(role))
+                .filter((item) => item.roles.includes(userRole))
                 .map((item, itemIndex) => (
                   <li
                     key={itemIndex}

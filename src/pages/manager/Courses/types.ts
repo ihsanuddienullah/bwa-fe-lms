@@ -1,4 +1,4 @@
-export interface Course {
+export interface ICourse {
   id: number
   title: string
   thumbnail: string
@@ -6,7 +6,7 @@ export interface Course {
   category: string
 }
 
-export interface CourseContent {
+export interface ICourseContent {
   id: number
   title: string
   type: 'video' | 'text'
@@ -14,7 +14,7 @@ export interface CourseContent {
   orderNumber: number
 }
 
-export interface CourseDetail {
+export interface ICourseDetail {
   id: string
   title: string
   thumbnail: string
@@ -22,5 +22,5 @@ export interface CourseDetail {
   category: string
   totalContents: number
   hasCertificate: boolean
-  contents: CourseContent[]
+  contents: ICourseContent[]
 }

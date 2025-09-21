@@ -1,4 +1,4 @@
-export interface LatestCourse {
+export interface ILatestCourse {
   id: string
   title: string
   thumbnail: string

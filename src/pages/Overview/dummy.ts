@@ -1,6 +1,6 @@
-import type { LatestCourse } from './types'
+import type { ILatestCourse } from './types'
 
-export const LATEST_COURSES: LatestCourse[] = [
+export const LATEST_COURSES: ILatestCourse[] = [
   {
     id: '1',
     title: 'Responsive Design Triclorem Lorem, ipsum dolor.',
