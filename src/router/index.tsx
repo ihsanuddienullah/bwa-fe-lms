@@ -1,5 +1,6 @@
-import { createBrowserRouter } from 'react-router'
-import ProtectedRoute from '../components/ProtectedRoute'
+import { createBrowserRouter, redirect } from 'react-router'
+import secureLocalStorage from 'react-secure-storage'
+import Layout from '../components/Layout'
 import {
   CourseDetail,
   CoursePreview,
@@ -13,6 +14,8 @@ import {
   SignUp,
   Students,
 } from '../pages'
+import { STORAGE_KEY } from '../utils/constants'
+import type { IStorageKey } from '../utils/global-types'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,19 @@ const router = createBrowserRouter([
   {
     path: '/sign-in',
     element: <SignIn />,
+    loader: () => {
+      const userData = secureLocalStorage.getItem(STORAGE_KEY) as IStorageKey
+
+      if (userData) {
+        if (userData.role === 'manager') {
+          throw redirect('/manager/overview')
+        } else {
+          throw redirect('/student/overview')
+        }
+      }
+
+      return null
+    },
   },
   {
     path: '/sign-up',
@@ -37,7 +53,16 @@ const router = createBrowserRouter([
   },
   {
     path: '/manager',
-    element: <ProtectedRoute />,
+    loader: () => {
+      const userData = secureLocalStorage.getItem(STORAGE_KEY) as IStorageKey
+
+      if (!userData || userData.role !== 'manager') {
+        throw redirect('/sign-in')
+      }
+
+      return userData
+    },
+    element: <Layout userRole={'manager'} userName={'Ihsan'} />,
     children: [
       { path: '/manager/overview', element: <Overview role="manager" /> },
       {
@@ -68,7 +93,16 @@ const router = createBrowserRouter([
   },
   {
     path: '/student',
-    element: <ProtectedRoute />,
+    loader: () => {
+      const userData = secureLocalStorage.getItem(STORAGE_KEY) as IStorageKey
+
+      if (!userData || userData.role !== 'student') {
+        throw redirect('/sign-in')
+      }
+
+      return userData
+    },
+    element: <Layout userRole={'student'} userName={'Ihsan'} />,
     children: [
       { path: '/student/overview', element: <Overview role="student" /> },
       {
