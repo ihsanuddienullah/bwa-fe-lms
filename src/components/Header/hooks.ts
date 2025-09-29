@@ -1,11 +1,8 @@
 import { useCallback, useState } from 'react'
-import { useNavigate } from 'react-router'
 import secureLocalStorage from 'react-secure-storage'
 import { STORAGE_KEY } from '../../utils/constants'
 
 const useCustom = () => {
-  const navigate = useNavigate()
-
   const [profileDropdown, setProfileDropdown] = useState(false)
 
   const toggleDropdown = useCallback(() => {
@@ -14,8 +11,8 @@ const useCustom = () => {
 
   const handleLogout = useCallback(() => {
     secureLocalStorage.removeItem(STORAGE_KEY)
-    navigate('/sign-in')
-  }, [navigate])
+    window.location.assign('/login')
+  }, [])
 
   return {
     data: {
