@@ -11,7 +11,7 @@ const useCustom = () => {
 
   const handleLogout = useCallback(() => {
     secureLocalStorage.removeItem(STORAGE_KEY)
-    window.location.assign('/login')
+    window.location.assign('/sign-in')
   }, [])
 
   return {
