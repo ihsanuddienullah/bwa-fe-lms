@@ -1,8 +1,11 @@
 import { Link } from 'react-router'
 import CourseCard from './_components/CourseCard'
-import { DUMMY_COURSES } from './dummy'
+import useCustom from './hooks'
+import type { ICourse } from './types'
 
 const Courses = () => {
+  const { data } = useCustom()
+
   return (
     <>
       <header className="flex items-center justify-between gap-[30px]">
@@ -33,7 +36,7 @@ const Courses = () => {
         id="CourseList"
         className="flex flex-col w-full rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]"
       >
-        {DUMMY_COURSES.map((course) => (
+        {data.courseList.map((course: ICourse) => (
           <CourseCard
             id={course.id}
             key={course.id}
