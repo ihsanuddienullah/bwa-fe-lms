@@ -1,4 +1,9 @@
+import type { IGetCategoriesResponse } from '../../../../utils/global-types'
+import useCustom from './hooks'
+
 const ManageCourse = () => {
+  const { data } = useCustom()
+
   return (
     <>
       <header className="flex items-center justify-between gap-[30px]">
@@ -122,9 +127,11 @@ const ManageCourse = () => {
               <option value="" hidden>
                 Choose one category
               </option>
-              <option value="">test</option>
-              <option value="">test</option>
-              <option value="">test</option>
+              {data.categories.map((item: IGetCategoriesResponse) => (
+                <option key={item._id} value={item._id}>
+                  {item.name}
+                </option>
+              ))}
             </select>
             <img
               src="/assets/images/icons/arrow-down.svg"
