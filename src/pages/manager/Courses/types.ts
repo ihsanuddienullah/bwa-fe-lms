@@ -1,12 +1,3 @@
-export interface IGetCoursesResponse {
-  _id: number
-  title: string
-  thumbnail: string
-  total_students: number
-  category: string
-  students: string[]
-}
-
 export interface ICourse {
   id: number
   title: string

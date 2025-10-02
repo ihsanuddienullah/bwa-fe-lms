@@ -36,7 +36,7 @@ const Courses = () => {
         id="CourseList"
         className="flex flex-col w-full rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]"
       >
-        {data.courseList.map((course: ICourse) => (
+        {data.courses.map((course: ICourse) => (
           <CourseCard
             id={course.id}
             key={course.id}
