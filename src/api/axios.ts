@@ -26,3 +26,15 @@ apiInstanceAuth.interceptors.request.use((config) => {
 
   return config
 })
+
+apiInstanceAuth.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.data.message.includes('expired')) {
+      secureLocalStorage.removeItem(STORAGE_KEY)
+      window.location.assign('/sign-in')
+    }
+
+    return Promise.reject(error)
+  }
+)
