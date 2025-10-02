@@ -2,7 +2,7 @@ import type { IGetCategoriesResponse } from '../../../../utils/global-types'
 import useCustom from './hooks'
 
 const ManageCourse = () => {
-  const { data } = useCustom()
+  const { data, methods, refs } = useCustom()
 
   return (
     <>
@@ -23,12 +23,12 @@ const ManageCourse = () => {
         </div>
       </header>
       <form
-        action="manage-course.html"
+        onSubmit={methods.handleSubmit(methods.onSubmit)}
         className="flex flex-col w-[550px] rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]"
       >
         <div className="flex flex-col gap-[10px]">
           <label htmlFor="title" className="font-semibold">
-            Course Name
+            Course Title
           </label>
           <div className="flex items-center w-full rounded-full border border-[#CFDBEF] gap-3 px-5 transition-all duration-300 focus-within:ring-2 focus-within:ring-[#662FFF]">
             <img
@@ -37,14 +37,18 @@ const ManageCourse = () => {
               alt="icon"
             />
             <input
+              {...methods.register('title')}
               type="text"
-              name="title"
               id="title"
               className="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#838C9D] !bg-transparent"
-              placeholder="Write better name for your course"
-              required
+              placeholder="Write better title for your course"
             />
           </div>
+          {data.formState.errors.title && (
+            <span className="text-red-500 text-sm">
+              {data.formState.errors.title.message}
+            </span>
+          )}
         </div>
         <div className="relative flex flex-col gap-[10px]">
           <label htmlFor="thumbnail" className="font-semibold">
@@ -57,8 +61,8 @@ const ManageCourse = () => {
             <button
               type="button"
               id="trigger-input"
-              className="absolute top-0 left-0 w-full h-full flex justify-center items-center gap-3 z-0"
-              onClick={() => {}}
+              className="absolute top-0 left-0 w-full h-full flex justify-center items-center gap-3 z-0 cursor-pointer"
+              onClick={() => refs.inputThumbnail.current?.click()}
             >
               <img
                 src="/assets/images/icons/gallery-add-black.svg"
@@ -67,28 +71,40 @@ const ManageCourse = () => {
               />
               <span className="text-[#838C9D]">Add an attachment</span>
             </button>
-            <img
-              id="thumbnail-preview"
-              src=""
-              className="w-full h-full object-cover hidden"
-              alt="thumbnail"
-            />
+            {data.thumbnailPreview !== '' && (
+              <img
+                id="thumbnail-preview"
+                src={data.thumbnailPreview}
+                className="w-full h-full object-cover"
+                alt="thumbnail"
+              />
+            )}
+
             <button
               type="button"
               id="delete-preview"
-              className="absolute right-[10px] bottom-[10px] w-12 h-12 rounded-full z-10 hidden"
+              className={`absolute right-[10px] bottom-[10px] w-12 h-12 rounded-full z-10 ${
+                data.thumbnail === null ? 'hidden' : ''
+              } `}
+              onClick={methods.handleDeletePreview}
             >
               <img src="/assets/images/icons/delete.svg" alt="delete" />
             </button>
           </div>
           <input
+            {...methods.register('thumbnail')}
             type="file"
-            name="thumbnail"
             id="thumbnail"
             accept="image/*"
             className="absolute bottom-0 left-1/4 -z-10"
-            required
+            onChange={methods.onThumbnailChange}
+            ref={refs.inputThumbnail}
           />
+          {data.formState.errors.thumbnail && (
+            <span className="text-red-500 text-sm">
+              {String(data.formState.errors.thumbnail.message)}
+            </span>
+          )}
         </div>
         <div className="flex flex-col gap-[10px]">
           <label htmlFor="tagline" className="font-semibold">
@@ -101,13 +117,18 @@ const ManageCourse = () => {
               alt="icon"
             />
             <input
+              {...methods.register('tagline')}
               type="text"
-              name="tagline"
               id="tagline"
               className="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#838C9D] !bg-transparent"
               placeholder="Write tagline for better copy"
             />
           </div>
+          {data.formState.errors.tagline && (
+            <span className="text-red-500 text-sm">
+              {data.formState.errors.tagline.message}
+            </span>
+          )}
         </div>
         <div className="flex flex-col gap-[10px]">
           <label htmlFor="category" className="font-semibold">
@@ -120,7 +141,7 @@ const ManageCourse = () => {
               alt="icon"
             />
             <select
-              name="category"
+              {...methods.register('categoryId')}
               id="category"
               className="appearance-none outline-none w-full py-3 px-2 -mx-2 font-semibold placeholder:font-normal placeholder:text-[#838C9D] !bg-transparent"
             >
@@ -139,32 +160,39 @@ const ManageCourse = () => {
               alt="icon"
             />
           </div>
+          {data.formState.errors.categoryId && (
+            <span className="text-red-500 text-sm">
+              {data.formState.errors.categoryId.message}
+            </span>
+          )}
         </div>
         <div className="flex flex-col gap-[10px]">
           <label htmlFor="desc" className="font-semibold">
             Description
           </label>
-          <div className="flex w-full rounded-[20px] border border-[#CFDBEF] gap-3 p-5  transition-all duration-300 focus-within:ring-2 focus-within:ring-[#662FFF] ring-2 ring-[#FF435A]">
+          <div className="flex w-full rounded-[20px] border border-[#CFDBEF] gap-3 p-5  transition-all duration-300 focus-within:ring-2 focus-within:ring-[#662FFF]">
             <img
               src="/assets/images/icons/note-black.png"
               className="w-6 h-6"
               alt="icon"
             />
             <textarea
-              name="desc"
+              {...methods.register('description')}
               id="desc"
               rows={5}
               className="appearance-none outline-none w-full font-semibold placeholder:font-normal placeholder:text-[#838C9D] !bg-transparent"
               placeholder="Explain what this course about"
             ></textarea>
           </div>
-          <span className="error-message text-[#FF435A]">
-            The description is required
-          </span>
+          {data.formState.errors.description && (
+            <span className="text-red-500 text-sm">
+              {data.formState.errors.description.message}
+            </span>
+          )}
         </div>
         <div className="flex items-center gap-[14px]">
           <button
-            type="submit"
+            type="button"
             className="w-full rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"
           >
             Save as Draft

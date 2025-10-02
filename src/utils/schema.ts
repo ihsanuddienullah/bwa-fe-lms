@@ -7,3 +7,13 @@ export const signUpSchema = z.object({
 })
 
 export const signInSchema = signUpSchema.omit({ name: true })
+
+export const createCourseSchema = z.object({
+  title: z.string().min(1, 'Title is required'),
+  categoryId: z.string().min(1, 'Category is required'),
+  description: z.string().min(1, 'Description is required'),
+  tagline: z.string().min(1, 'Tagline is required'),
+  thumbnail: z
+    .any()
+    .refine((file) => file?.name, { message: 'Thumbnail is required' }),
+})
