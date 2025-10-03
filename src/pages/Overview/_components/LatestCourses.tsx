@@ -20,8 +20,8 @@ const LatestCourses = ({ role, courseList }: LatestCoursesProps) => {
       )}
       {courseList.map((course) => (
         <CourseCard
-          key={course.id}
-          id={course.id}
+          key={course._id}
+          id={course._id}
           thumbnail={course.thumbnail}
           role={role}
           title={course.title}
