@@ -1,5 +1,5 @@
 export interface ILatestCourse {
-  id: string
+  _id: string
   title: string
   thumbnail: string
   category: string
