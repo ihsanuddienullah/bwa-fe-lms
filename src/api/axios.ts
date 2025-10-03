@@ -1,4 +1,5 @@
 import axios from 'axios'
+import toast from 'react-hot-toast'
 import secureLocalStorage from 'react-secure-storage'
 import { STORAGE_KEY } from '../utils/constants'
 import type { IStorageKey } from '../utils/global-types'
@@ -9,6 +10,17 @@ export const apiInstance = axios.create({
   baseURL,
   timeout: 3000,
 })
+
+apiInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 500) {
+      toast.error(error.response.data.message || 'Internal Server Error')
+    }
+
+    return Promise.reject(error)
+  }
+)
 
 export const apiInstanceAuth = axios.create({
   baseURL,
@@ -31,8 +43,17 @@ apiInstanceAuth.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response.data.message.includes('expired')) {
-      secureLocalStorage.removeItem(STORAGE_KEY)
-      window.location.assign('/sign-in')
+      const duration = 5000
+      toast.error('Session expired. Please sign in again.', { duration })
+
+      setTimeout(() => {
+        secureLocalStorage.removeItem(STORAGE_KEY)
+        window.location.assign('/sign-in')
+      }, duration)
+    }
+
+    if (error.response.status === 500) {
+      toast.error(error.response.data.message || 'Internal Server Error')
     }
 
     return Promise.reject(error)

@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import type { AxiosError } from 'axios'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
@@ -35,9 +34,6 @@ const useCustom = () => {
         }
       } catch (error) {
         console.log(error)
-
-        const err = error as AxiosError<{ message: string }>
-        if (err.response) alert(`Sign-in failed. ${err.response.data.message}`)
       }
     },
     [mutateAsync, navigate]
