@@ -9,10 +9,10 @@ interface OverviewProps {
 }
 
 const Overview = ({ role = 'manager' }: OverviewProps) => {
-  useCustom()
+  const { data } = useCustom()
 
   if (role === 'student') {
-    return <LatestCourse role={role} />
+    return <LatestCourse role={role} courseList={data?.courses} />
   }
 
   return (
@@ -41,7 +41,7 @@ const Overview = ({ role = 'manager' }: OverviewProps) => {
       </header>
       <StatsOverview />
       <div className="grid grid-cols-2 gap-[30px]">
-        <LatestCourse role={role} />
+        <LatestCourse role={role} courseList={data?.courses} />
         <LatestStudents />
       </div>
     </>

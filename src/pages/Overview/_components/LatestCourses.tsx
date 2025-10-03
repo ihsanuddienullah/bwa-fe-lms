@@ -1,11 +1,12 @@
-import { LATEST_COURSES } from '../dummy'
+import type { ILatestCourse } from '../types'
 import CourseCard from './CourseCard'
 
 interface LatestCoursesProps {
   role: 'manager' | 'student'
+  courseList: ILatestCourse[]
 }
 
-const LatestCourses = ({ role }: LatestCoursesProps) => {
+const LatestCourses = ({ role, courseList }: LatestCoursesProps) => {
   return (
     <section
       id="LatestCourses"
@@ -14,7 +15,10 @@ const LatestCourses = ({ role }: LatestCoursesProps) => {
       <h2 className="font-extrabold text-[22px] leading-[33px]">
         Latest Courses
       </h2>
-      {LATEST_COURSES.map((course) => (
+      {courseList.length === 0 && (
+        <p className="text-[#838C9D]">No courses available</p>
+      )}
+      {(courseList || []).map((course) => (
         <CourseCard
           key={course.id}
           id={course.id}
