@@ -29,14 +29,14 @@ const CourseDetail = () => {
           </h1>
         </div>
         <div className="flex items-center gap-3">
-          <a
-            href="#"
+          <Link
+            to={`/manager/courses/edit/${courseId}`}
             className="w-fit rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"
           >
             Edit Course
-          </a>
+          </Link>
           <Link
-            to={`/manager/course/${courseId}/preview`}
+            to={`/manager/courses/${courseId}/preview`}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Preview
@@ -98,7 +98,7 @@ const CourseDetail = () => {
             Course Content
           </h2>
           <Link
-            to={`/manager/course/${courseId}/create-content`}
+            to={`/manager/courses/${courseId}/create-content`}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Add Content

@@ -9,9 +9,11 @@ const ManageCourse = () => {
       <header className="flex items-center justify-between gap-[30px]">
         <div>
           <h1 className="font-extrabold text-[28px] leading-[42px]">
-            New Course
+            {data.courseId ? 'Edit' : 'New'} Course
           </h1>
-          <p className="text-[#838C9D] mt-[1]">Create new future for company</p>
+          <p className="text-[#838C9D] mt-[1]">
+            {data.courseId ? 'Edit' : 'Create new'} future for company
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <a
@@ -84,7 +86,7 @@ const ManageCourse = () => {
               type="button"
               id="delete-preview"
               className={`absolute right-[10px] bottom-[10px] w-12 h-12 rounded-full z-10 ${
-                data.thumbnail === null ? 'hidden' : ''
+                data.thumbnailPreview === '' || data.courseId ? 'hidden' : ''
               } `}
               onClick={methods.handleDeletePreview}
             >
@@ -202,7 +204,7 @@ const ManageCourse = () => {
             disabled={data.submitting}
             className="w-full rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
-            Create Now
+            {data.courseId ? 'Edit' : 'Create'} Now
           </button>
         </div>
       </form>

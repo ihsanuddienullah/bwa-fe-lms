@@ -81,15 +81,19 @@ const router = createBrowserRouter([
         element: <CreateCourse />,
       },
       {
+        path: 'courses/edit/:course_id',
+        element: <CreateCourse />,
+      },
+      {
         path: 'courses/:course_id',
         element: <CourseDetail />,
       },
       {
-        path: 'course/:course_id/preview',
+        path: 'courses/:course_id/preview',
         element: <CoursePreview />,
       },
       {
-        path: 'course/:course_id/create-content',
+        path: 'courses/:course_id/create-content',
         element: <CreateContent />,
       },
       {

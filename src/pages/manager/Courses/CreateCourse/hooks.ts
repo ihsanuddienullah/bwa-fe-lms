@@ -10,62 +10,94 @@ import {
 } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import {
   createCourse,
   getCategories,
+  getCourseById,
+  updateCourse,
 } from '../../../../api/services/course-service'
 import type { IGetCategoriesResponse } from '../../../../utils/global-types'
-import { createCourseSchema } from '../../../../utils/schema'
-import type { TCreateCourse } from './types'
+import {
+  createCourseSchema,
+  updateCourseSchema,
+} from '../../../../utils/schema'
+import type { TCreateCourse, TUpdateCourse } from './types'
 
 const useCustom = () => {
   const navigate = useNavigate()
+  const courseId = useParams().course_id
 
-  const [thumbnail, setThumbnail] = useState<File | null>(null)
   const [thumbnailPreview, setThumbnailPreview] = useState('')
 
   const inputThumbnail = useRef<HTMLInputElement>(null)
 
   const { register, handleSubmit, formState, setValue } = useForm({
-    resolver: zodResolver(createCourseSchema),
+    resolver: zodResolver(courseId ? updateCourseSchema : createCourseSchema),
   })
 
-  const { data, isLoading } = useQuery({
+  const {
+    data: dataCourseById,
+    isLoading: isLoadingCourseById,
+    isSuccess,
+  } = useQuery({
+    queryKey: ['courses', courseId],
+    queryFn: () => getCourseById(courseId || ''),
+    enabled: !!courseId,
+  })
+
+  const { data: dataCategories, isLoading: isLoadingCategories } = useQuery({
     queryKey: ['categories'],
     queryFn: () => getCategories(),
   })
 
-  const { isPending, mutateAsync } = useMutation({
+  const createCourseMutation = useMutation({
     mutationFn: (payload: TCreateCourse) => createCourse(payload),
   })
 
+  const updateCourseMutation = useMutation({
+    mutationFn: (payload: TUpdateCourse) =>
+      updateCourse(courseId || '', payload),
+  })
+
   const categories = useMemo(
-    () => (data?.data || []).map((item: IGetCategoriesResponse) => item),
-    [data]
+    () =>
+      (dataCategories?.data || []).map((item: IGetCategoriesResponse) => item),
+    [dataCategories]
   )
 
   const onSubmit = useCallback(
-    async (value: TCreateCourse) => {
+    async (value: TCreateCourse | TUpdateCourse) => {
       try {
-        const response = await mutateAsync(value)
+        if (courseId) {
+          const response = await updateCourseMutation.mutateAsync(
+            value as TUpdateCourse
+          )
 
-        if (response.message.includes('success')) {
-          toast.success('Course created successfully')
-          navigate('/manager/courses')
+          if (response.message.includes('success')) {
+            toast.success('Course updated successfully')
+          }
+        } else {
+          const response = await createCourseMutation.mutateAsync(
+            value as TCreateCourse
+          )
+
+          if (response.message.includes('success')) {
+            toast.success('Course created successfully')
+          }
         }
+        navigate('/manager/courses')
       } catch (error) {
         console.log(error)
       }
     },
-    [mutateAsync, navigate]
+    [courseId, updateCourseMutation, createCourseMutation, navigate]
   )
 
   const onThumbnailChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.files) {
         const file = event.target.files[0]
-        setThumbnail(file)
         setValue('thumbnail', file, {
           shouldValidate: true,
           shouldDirty: true,
@@ -78,7 +110,6 @@ const useCustom = () => {
   )
 
   const handleDeletePreview = useCallback(() => {
-    setThumbnail(null)
     setValue('thumbnail', null, {
       shouldValidate: true,
       shouldDirty: true,
@@ -98,13 +129,29 @@ const useCustom = () => {
     }
   }, [thumbnailPreview])
 
+  useEffect(() => {
+    if (dataCourseById && isSuccess) {
+      const course = dataCourseById.data
+
+      setValue('title', course.title)
+      setValue('categoryId', course.category)
+      setValue('description', course.description)
+      setValue('tagline', course.tagline)
+
+      if (course.thumbnail) {
+        setThumbnailPreview(course.thumbnail || '')
+      }
+    }
+  }, [dataCourseById, isSuccess, setValue])
+
   return {
     data: {
       categories,
+      courseId,
       formState,
-      submitting: isPending,
-      loading: isLoading,
-      thumbnail,
+      submitting: createCourseMutation.isPending,
+      loadingCategories: isLoadingCategories,
+      loadingCourseById: isLoadingCourseById,
       thumbnailPreview,
     },
     methods: {
