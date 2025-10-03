@@ -25,7 +25,7 @@ const Courses = () => {
             Import File
           </a>
           <Link
-            to="/manager/courses/create-course"
+            to="/manager/courses/create"
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             New Course

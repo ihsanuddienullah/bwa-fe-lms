@@ -199,6 +199,7 @@ const ManageCourse = () => {
           </button>
           <button
             type="submit"
+            disabled={data.submitting}
             className="w-full rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Create Now

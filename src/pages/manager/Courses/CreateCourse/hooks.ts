@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import {
   useCallback,
   useEffect,
@@ -9,12 +9,19 @@ import {
   type ChangeEvent,
 } from 'react'
 import { useForm } from 'react-hook-form'
-import { getCategories } from '../../../../api/services/course-service'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router'
+import {
+  createCourse,
+  getCategories,
+} from '../../../../api/services/course-service'
 import type { IGetCategoriesResponse } from '../../../../utils/global-types'
 import { createCourseSchema } from '../../../../utils/schema'
 import type { TCreateCourse } from './types'
 
 const useCustom = () => {
+  const navigate = useNavigate()
+
   const [thumbnail, setThumbnail] = useState<File | null>(null)
   const [thumbnailPreview, setThumbnailPreview] = useState('')
 
@@ -29,14 +36,30 @@ const useCustom = () => {
     queryFn: () => getCategories(),
   })
 
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: (payload: TCreateCourse) => createCourse(payload),
+  })
+
   const categories = useMemo(
     () => (data?.data || []).map((item: IGetCategoriesResponse) => item),
     [data]
   )
 
-  const onSubmit = useCallback((value: TCreateCourse) => {
-    console.log(value)
-  }, [])
+  const onSubmit = useCallback(
+    async (value: TCreateCourse) => {
+      try {
+        const response = await mutateAsync(value)
+
+        if (response.message.includes('success')) {
+          toast.success('Course created successfully')
+          navigate('/manager/courses')
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [mutateAsync, navigate]
+  )
 
   const onThumbnailChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -79,6 +102,7 @@ const useCustom = () => {
     data: {
       categories,
       formState,
+      submitting: isPending,
       loading: isLoading,
       thumbnail,
       thumbnailPreview,
