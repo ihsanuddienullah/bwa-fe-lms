@@ -14,7 +14,7 @@ export const apiInstance = axios.create({
 apiInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 500) {
+    if (error.response.status !== 200) {
       toast.error(error.response.data.message || 'Internal Server Error')
     }
 
@@ -42,18 +42,18 @@ apiInstanceAuth.interceptors.request.use((config) => {
 apiInstanceAuth.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.data.message.includes('expired')) {
-      const duration = 5000
-      toast.error('Session expired. Please sign in again.', { duration })
+    if (error.response.status !== 200) {
+      if (error.response.data.message.includes('expired')) {
+        const duration = 5000
+        toast.error('Session expired. Please sign in again.', { duration })
 
-      setTimeout(() => {
-        secureLocalStorage.removeItem(STORAGE_KEY)
-        window.location.assign('/sign-in')
-      }, duration)
-    }
-
-    if (error.response.status === 500) {
-      toast.error(error.response.data.message || 'Internal Server Error')
+        setTimeout(() => {
+          secureLocalStorage.removeItem(STORAGE_KEY)
+          window.location.assign('/sign-in')
+        }, duration)
+      } else {
+        toast.error(error.response.data.message || 'Internal Server Error')
+      }
     }
 
     return Promise.reject(error)
