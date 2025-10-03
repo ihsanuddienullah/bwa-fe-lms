@@ -18,7 +18,7 @@ const LatestCourses = ({ role, courseList }: LatestCoursesProps) => {
       {courseList.length === 0 && (
         <p className="text-[#838C9D]">No courses available</p>
       )}
-      {(courseList || []).map((course) => (
+      {courseList.map((course) => (
         <CourseCard
           key={course.id}
           id={course.id}

@@ -10,7 +10,7 @@ const useCustom = () => {
   return {
     data: {
       loading: isLoading,
-      courses: data?.data,
+      courses: data?.data || [],
     },
     methods: {},
   }
