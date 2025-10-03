@@ -28,9 +28,9 @@ const useCustom = () => {
         secureLocalStorage.setItem(STORAGE_KEY, response.data)
 
         if (response.data.role === 'manager') {
-          navigate('/manager/overview')
+          navigate('/manager')
         } else {
-          navigate('/student/overview')
+          navigate('/student')
         }
       } catch (error) {
         console.log(error)

@@ -64,29 +64,36 @@ const router = createBrowserRouter([
     },
     element: <Layout userRole={'manager'} userName={'Ihsan'} />,
     children: [
-      { path: '/manager/overview', element: <Overview role="manager" /> },
       {
-        path: '/manager/courses',
+        index: true,
+        loader: () => redirect('/manager/overview'), // redirect to first child
+      },
+      {
+        path: 'overview',
+        element: <Overview role="manager" />,
+      },
+      {
+        path: 'courses',
         element: <Courses />,
       },
       {
-        path: '/manager/courses/create-course',
+        path: 'courses/create-course',
         element: <CreateCourse />,
       },
       {
-        path: '/manager/courses/:course_id',
+        path: 'courses/:course_id',
         element: <CourseDetail />,
       },
       {
-        path: '/manager/course/:course_id/preview',
+        path: 'course/:course_id/preview',
         element: <CoursePreview />,
       },
       {
-        path: '/manager/course/:course_id/create-content',
+        path: 'course/:course_id/create-content',
         element: <CreateContent />,
       },
       {
-        path: '/manager/students',
+        path: 'students',
         element: <Students />,
       },
     ],
@@ -104,9 +111,17 @@ const router = createBrowserRouter([
     },
     element: <Layout userRole={'student'} userName={'Ihsan'} />,
     children: [
-      { path: '/student/overview', element: <Overview role="student" /> },
       {
-        path: '/student/course/:id/preview',
+        index: true,
+        loader: () => redirect('/student/overview'), // redirect to first child
+      },
+      {
+        index: true,
+        path: 'overview',
+        element: <Overview role="student" />,
+      },
+      {
+        path: 'course/:id/preview',
         element: <CoursePreview />,
       },
     ],
