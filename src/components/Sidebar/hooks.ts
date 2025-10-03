@@ -16,12 +16,14 @@ const useCustom = ({ userRole = 'manager' }: UseCustomProps) => {
     const currentPath = window.location.pathname
     const menuItem = SIDEBAR_MENU(userRole)
       .flatMap((section) => section.items)
-      .find((item) => item.path === currentPath)
+      .find(
+        (item) => item.path === currentPath || currentPath.includes(item.path)
+      )
 
     if (menuItem) {
       setActiveMenu(menuItem.title) // Set the active menu based on the current path
     }
-  }, [])
+  }, [userRole])
 
   return {
     data: {
