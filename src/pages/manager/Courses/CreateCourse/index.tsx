@@ -195,14 +195,14 @@ const ManageCourse = () => {
         <div className="flex items-center gap-[14px]">
           <button
             type="button"
-            className="w-full rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"
+            className="w-full rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap cursor-pointer"
           >
             Save as Draft
           </button>
           <button
             type="submit"
             disabled={data.submitting}
-            className="w-full rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
+            className="w-full rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap cursor-pointer"
           >
             {data.courseId ? 'Edit' : 'Create'} Now
           </button>

@@ -36,17 +36,13 @@ const useCustom = () => {
     resolver: zodResolver(courseId ? updateCourseSchema : createCourseSchema),
   })
 
-  const {
-    data: dataCourseById,
-    isLoading: isLoadingCourseById,
-    isSuccess,
-  } = useQuery({
+  const getCourseByIdQuery = useQuery({
     queryKey: ['courses', courseId],
     queryFn: () => getCourseById(courseId || ''),
     enabled: !!courseId,
   })
 
-  const { data: dataCategories, isLoading: isLoadingCategories } = useQuery({
+  const getCategoriesQuery = useQuery({
     queryKey: ['categories'],
     queryFn: () => getCategories(),
   })
@@ -62,8 +58,10 @@ const useCustom = () => {
 
   const categories = useMemo(
     () =>
-      (dataCategories?.data || []).map((item: IGetCategoriesResponse) => item),
-    [dataCategories]
+      (getCategoriesQuery.data?.data || []).map(
+        (item: IGetCategoriesResponse) => item
+      ),
+    [getCategoriesQuery.data]
   )
 
   const onSubmit = useCallback(
@@ -130,8 +128,8 @@ const useCustom = () => {
   }, [thumbnailPreview])
 
   useEffect(() => {
-    if (dataCourseById && isSuccess) {
-      const course = dataCourseById.data
+    if (getCourseByIdQuery.data && getCourseByIdQuery.isSuccess) {
+      const course = getCourseByIdQuery.data.data
 
       setValue('title', course.title)
       setValue('categoryId', course.category)
@@ -142,7 +140,7 @@ const useCustom = () => {
         setThumbnailPreview(course.thumbnail || '')
       }
     }
-  }, [dataCourseById, isSuccess, setValue])
+  }, [getCourseByIdQuery, setValue])
 
   return {
     data: {
@@ -150,8 +148,8 @@ const useCustom = () => {
       courseId,
       formState,
       submitting: createCourseMutation.isPending,
-      loadingCategories: isLoadingCategories,
-      loadingCourseById: isLoadingCourseById,
+      loadingCategories: getCategoriesQuery.isLoading,
+      loadingCourseById: getCourseByIdQuery.isLoading,
       thumbnailPreview,
     },
     methods: {
