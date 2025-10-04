@@ -26,3 +26,6 @@ export const updateCourse = (courseId: string, data: TUpdateCourse) =>
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then((res) => res.data)
+
+export const deleteCourse = (courseId: string) =>
+  apiInstanceAuth.delete(`/courses/${courseId}`).then((res) => res.data)

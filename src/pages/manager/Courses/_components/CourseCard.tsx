@@ -6,6 +6,7 @@ interface CourseProps {
   thumbnail: string
   totalStudents: number
   category: string
+  handleDeleteCourse: (courseId: number, title: string) => void
 }
 
 const Card = ({
@@ -14,6 +15,7 @@ const Card = ({
   totalStudents,
   thumbnail,
   category,
+  handleDeleteCourse,
 }: CourseProps) => {
   return (
     <div className="card flex items-center gap-5">
@@ -48,6 +50,13 @@ const Card = ({
         </div>
       </div>
       <div className="flex justify-end items-center gap-3">
+        <button
+          type="button"
+          onClick={() => handleDeleteCourse(id, title)}
+          className="w-fit rounded-full p-[14px_20px] bg-[#FF435A] font-semibold text-white text-nowrap cursor-pointer"
+        >
+          Delete
+        </button>
         <Link
           to={`/manager/courses/${id}`}
           className="w-fit rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"

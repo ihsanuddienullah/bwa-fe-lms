@@ -1,10 +1,11 @@
 import { Link } from 'react-router'
 import CourseCard from './_components/CourseCard'
+
 import useCustom from './hooks'
 import type { ICourse } from './types'
 
 const Courses = () => {
-  const { data } = useCustom()
+  const { data, methods } = useCustom()
 
   return (
     <>
@@ -44,6 +45,7 @@ const Courses = () => {
             totalStudents={course.totalStudents}
             thumbnail={course.thumbnail}
             category={course.category}
+            handleDeleteCourse={methods.handleDeleteCourse}
           />
         ))}
         <div id="Pagination" className="flex items-center gap-3">
