@@ -26,7 +26,7 @@ const useCustom = () => {
   )
 
   const handleDeleteCourse = useCallback(
-    async (courseId: number, title: string) => {
+    async (courseId: string, title: string) => {
       toast(
         (t) => (
           <AlertConfirmation

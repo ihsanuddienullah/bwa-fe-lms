@@ -1,5 +1,5 @@
 export interface ICourse {
-  id: number
+  id: string
   title: string
   thumbnail: string
   totalStudents: number
@@ -20,8 +20,9 @@ export interface ICourseDetail {
   title: string
   thumbnail: string
   totalStudents: number
-  category: string
-  totalContents: number
-  hasCertificate: boolean
+  category: {
+    id: string
+    name: string
+  }
   contents: ICourseContent[]
 }

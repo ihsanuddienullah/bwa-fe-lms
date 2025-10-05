@@ -1,12 +1,12 @@
 import { Link } from 'react-router'
 
 interface CourseProps {
-  id: number
+  id: string
   title: string
   thumbnail: string
   totalStudents: number
   category: string
-  handleDeleteCourse: (courseId: number, title: string) => void
+  handleDeleteCourse: (courseId: string, title: string) => void
 }
 
 const Card = ({
