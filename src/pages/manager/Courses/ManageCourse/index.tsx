@@ -113,11 +113,10 @@ const CourseDetail = () => {
 
         {data.courseById?.contents.map((content, index) => (
           <ContentCard
-            courseId={data.courseId ? parseInt(data.courseId) : 0}
+            courseId={content.courseId}
             key={content.id}
-            id={content.id}
+            contentId={content.id}
             title={content.title}
-            thumbnail={content.thumbnail}
             type={content.type}
             index={index + 1}
           />

@@ -11,8 +11,9 @@ export interface ICourseContent {
   id: number
   title: string
   type: 'video' | 'text'
-  thumbnail: string
-  orderNumber: number
+  youtube_id: string
+  text: string
+  courseId: string
 }
 
 export interface ICourseDetail {

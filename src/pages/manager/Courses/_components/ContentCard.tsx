@@ -1,18 +1,16 @@
 import { Link } from 'react-router'
 
 interface CardContentProps {
-  id: number
+  contentId: number
   title: string
-  thumbnail: string
   type: 'video' | 'text'
   index: number
-  courseId: number
+  courseId: string
 }
 
 const CardContent = ({
-  id,
+  contentId,
   title,
-  thumbnail,
   type,
   index,
   courseId,
@@ -25,7 +23,11 @@ const CardContent = ({
         </p>
         <div className="rounded-[20px] bg-[#D9D9D9] overflow-hidden">
           <img
-            src={thumbnail}
+            src={
+              type === 'video'
+                ? '/assets/images/thumbnails/cover-video.png'
+                : '/assets/images/thumbnails/cover-text.png'
+            }
             className="w-full h-full object-cover"
             alt="thumbnail"
           />
@@ -48,7 +50,7 @@ const CardContent = ({
       </div>
       <div className="flex justify-end items-center gap-3">
         <Link
-          to={`/manager/course/${courseId}/content/${id}`}
+          to={`/manager/course/${courseId}/content/edit/${contentId}`}
           className="w-fit rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"
         >
           Edit Content
