@@ -3,7 +3,6 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import {
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
   type ChangeEvent,
@@ -17,7 +16,6 @@ import {
   getCourseById,
   updateCourse,
 } from '../../../../api/services/course-service'
-import type { IGetCategoriesResponse } from '../../../../utils/global-types'
 import {
   createCourseSchema,
   updateCourseSchema,
@@ -55,14 +53,6 @@ const useCustom = () => {
     mutationFn: (payload: TUpdateCourse) =>
       updateCourse(courseId || '', payload),
   })
-
-  const categories = useMemo(
-    () =>
-      (getCategoriesQuery.data?.data || []).map(
-        (item: IGetCategoriesResponse) => item
-      ),
-    [getCategoriesQuery.data]
-  )
 
   const onSubmit = useCallback(
     async (value: TCreateCourse | TUpdateCourse) => {
@@ -132,7 +122,7 @@ const useCustom = () => {
       const course = getCourseByIdQuery.data.data
 
       setValue('title', course.title)
-      setValue('categoryId', course.category)
+      setValue('categoryId', course.category._id)
       setValue('description', course.description)
       setValue('tagline', course.tagline)
 
@@ -140,11 +130,11 @@ const useCustom = () => {
         setThumbnailPreview(course.thumbnail || '')
       }
     }
-  }, [getCourseByIdQuery, setValue])
+  }, [getCourseByIdQuery.data, getCourseByIdQuery.isSuccess, setValue])
 
   return {
     data: {
-      categories,
+      categories: getCategoriesQuery.data?.data || [],
       courseId,
       formState,
       submitting: createCourseMutation.isPending,

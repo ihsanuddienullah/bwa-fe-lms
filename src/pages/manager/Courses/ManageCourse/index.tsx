@@ -1,9 +1,9 @@
-import { Link, useParams } from 'react-router'
+import { Link } from 'react-router'
 import ContentCard from '../_components/ContentCard'
-import { DUMMY_COURSE_DETAIL } from '../dummy'
+import useCustom from './hooks'
 
 const CourseDetail = () => {
-  const courseId = useParams().course_id
+  const { data } = useCustom()
 
   return (
     <>
@@ -24,19 +24,18 @@ const CourseDetail = () => {
       <header className="flex items-center justify-between gap-[30px]">
         <div>
           <h1 className="font-extrabold text-[28px] leading-[42px]">
-            Mastering React TypeScript 7 <br />
-            Website Development
+            {data.courseById?.title}
           </h1>
         </div>
         <div className="flex items-center gap-3">
           <Link
-            to={`/manager/courses/edit/${courseId}`}
+            to={`/manager/courses/edit/${data.courseId}`}
             className="w-fit rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"
           >
             Edit Course
           </Link>
           <Link
-            to={`/manager/courses/${courseId}/preview`}
+            to={`/manager/courses/${data.courseId}/preview`}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Preview
@@ -49,7 +48,7 @@ const CourseDetail = () => {
           className="flex shrink-0 w-[480px] h-[250px] rounded-[20px] bg-[#D9D9D9] overflow-hidden"
         >
           <img
-            src="/assets/images/thumbnails/th-4.png"
+            src={data.courseById?.thumbnail || '/assets/images/thumbnail.png'}
             className="w-full h-full object-cover"
             alt="thumbnail"
           />
@@ -61,7 +60,9 @@ const CourseDetail = () => {
               className="w-8 h-8"
               alt="icon"
             />
-            <p className="font-semibold">12,489 Students</p>
+            <p className="font-semibold">
+              {data.courseById?.totalStudents} Students
+            </p>
           </div>
           <div className="flex flex-col rounded-[20px] border border-[#CFDBEF] p-5 gap-4">
             <img
@@ -69,7 +70,7 @@ const CourseDetail = () => {
               className="w-8 h-8"
               alt="icon"
             />
-            <p className="font-semibold">Programming</p>
+            <p className="font-semibold">{data.courseById?.category.name}</p>
           </div>
           <div className="flex flex-col rounded-[20px] border border-[#CFDBEF] p-5 gap-4">
             <img
@@ -77,7 +78,9 @@ const CourseDetail = () => {
               className="w-8 h-8"
               alt="icon"
             />
-            <p className="font-semibold">873 Contents</p>
+            <p className="font-semibold">
+              {data.courseById?.contents.length} Contents
+            </p>
           </div>
           <div className="flex flex-col rounded-[20px] border border-[#CFDBEF] p-5 gap-4">
             <img
@@ -98,15 +101,19 @@ const CourseDetail = () => {
             Course Content
           </h2>
           <Link
-            to={`/manager/courses/${courseId}/create-content`}
+            to={`/manager/courses/${data.courseId}/create-content`}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Add Content
           </Link>
         </div>
-        {DUMMY_COURSE_DETAIL.contents.map((content, index) => (
+        {data.courseById?.contents.length === 0 && (
+          <p className="text-center">No content available.</p>
+        )}
+
+        {data.courseById?.contents.map((content, index) => (
           <ContentCard
-            courseId={courseId ? parseInt(courseId) : 0}
+            courseId={data.courseId ? parseInt(data.courseId) : 0}
             key={content.id}
             id={content.id}
             title={content.title}
@@ -115,38 +122,41 @@ const CourseDetail = () => {
             index={index + 1}
           />
         ))}
-        <div id="Pagination" className="flex items-center gap-3">
-          <button
-            type="button"
-            className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 bg-[#662FFF] text-white"
-          >
-            <span className="font-semibold text-sm leading-[21px]">1</span>
-          </button>
-          <button
-            type="button"
-            className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 border border-[#060A23]"
-          >
-            <span className="font-semibold text-sm leading-[21px]">2</span>
-          </button>
-          <button
-            type="button"
-            className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 border border-[#060A23]"
-          >
-            <span className="font-semibold text-sm leading-[21px]">3</span>
-          </button>
-          <button
-            type="button"
-            className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 border border-[#060A23]"
-          >
-            <span className="font-semibold text-sm leading-[21px]">4</span>
-          </button>
-          <button
-            type="button"
-            className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 border border-[#060A23]"
-          >
-            <span className="font-semibold text-sm leading-[21px]">5</span>
-          </button>
-        </div>
+
+        {data.courseById?.contents.length > 0 && (
+          <div id="Pagination" className="flex items-center gap-3">
+            <button
+              type="button"
+              className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 bg-[#662FFF] text-white"
+            >
+              <span className="font-semibold text-sm leading-[21px]">1</span>
+            </button>
+            <button
+              type="button"
+              className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 border border-[#060A23]"
+            >
+              <span className="font-semibold text-sm leading-[21px]">2</span>
+            </button>
+            <button
+              type="button"
+              className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 border border-[#060A23]"
+            >
+              <span className="font-semibold text-sm leading-[21px]">3</span>
+            </button>
+            <button
+              type="button"
+              className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 border border-[#060A23]"
+            >
+              <span className="font-semibold text-sm leading-[21px]">4</span>
+            </button>
+            <button
+              type="button"
+              className="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 border border-[#060A23]"
+            >
+              <span className="font-semibold text-sm leading-[21px]">5</span>
+            </button>
+          </div>
+        )}
       </section>
     </>
   )
