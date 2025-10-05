@@ -93,7 +93,7 @@ const router = createBrowserRouter([
         element: <CoursePreview />,
       },
       {
-        path: 'courses/:course_id/create-content',
+        path: 'courses/:course_id/create',
         element: <CreateContent />,
       },
       {

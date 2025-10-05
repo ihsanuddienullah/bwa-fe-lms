@@ -101,7 +101,7 @@ const CourseDetail = () => {
             Course Content
           </h2>
           <Link
-            to={`/manager/courses/${data.courseId}/create-content`}
+            to={`/manager/courses/${data.courseId}/create`}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Add Content
