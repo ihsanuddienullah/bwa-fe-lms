@@ -13,19 +13,27 @@ export const getCourseById = (courseId: string) =>
 export const getCategories = () =>
   apiInstanceAuth.get('/categories').then((res) => res.data)
 
-export const createCourse = (data: TCreateCourse) =>
-  apiInstanceAuth
-    .post('/courses', data, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    .then((res) => res.data)
+export const createCourse = async (data: TCreateCourse) => {
+  const requestPayload = { ...data, category_id: data.categoryId }
 
-export const updateCourse = (courseId: string, data: TUpdateCourse) =>
-  apiInstanceAuth
-    .put(`/courses/${courseId}`, data, {
+  const res = await apiInstanceAuth.post('/courses', requestPayload, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+  return res.data
+}
+
+export const updateCourse = async (courseId: string, data: TUpdateCourse) => {
+  const requestPayload = { ...data, category_id: data.categoryId }
+
+  const res = await apiInstanceAuth.put(
+    `/courses/${courseId}`,
+    requestPayload,
+    {
       headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    .then((res) => res.data)
+    }
+  )
+  return res.data
+}
 
 export const deleteCourse = (courseId: string) =>
   apiInstanceAuth.delete(`/courses/${courseId}`).then((res) => res.data)
