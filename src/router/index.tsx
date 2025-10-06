@@ -62,7 +62,7 @@ const router = createBrowserRouter([
 
       return userData
     },
-    element: <Layout userRole={'manager'} userName={'Ihsan'} />,
+    element: <Layout />,
     children: [
       {
         index: true,
@@ -113,7 +113,7 @@ const router = createBrowserRouter([
 
       return userData
     },
-    element: <Layout userRole={'student'} userName={'Ihsan'} />,
+    element: <Layout />,
     children: [
       {
         index: true,

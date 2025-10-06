@@ -1,12 +1,7 @@
 import { Link } from 'react-router'
 import useCustom from './hooks'
 
-interface HeaderProps {
-  userRole: 'manager' | 'student'
-  userName: string
-}
-
-const Header = ({ userRole, userName }: HeaderProps) => {
+const Header = () => {
   const { data, methods } = useCustom()
 
   return (
@@ -30,9 +25,9 @@ const Header = ({ userRole, userName }: HeaderProps) => {
       </form>
       <div className="relative flex items-center justify-end gap-[14px]">
         <div className="text-right">
-          <p className="font-semibold capitalize">{userName}</p>
+          <p className="font-semibold capitalize">{data.userData?.name}</p>
           <p className="text-sm leading-[21px] text-[#838C9D] capitalize">
-            {userRole}
+            {data.userData?.role}
           </p>
         </div>
         <button
@@ -49,7 +44,7 @@ const Header = ({ userRole, userName }: HeaderProps) => {
         </button>
         <div
           id="ProfileDropdown"
-          className={`absolute top-full ${
+          className={`absolute top-full z-10 ${
             data.profileDropdown ? 'block' : 'hidden'
           }`}
         >
