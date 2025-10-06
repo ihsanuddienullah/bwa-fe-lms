@@ -26,7 +26,7 @@ const CourseCard = ({
       </div>
       <div className="w-full">
         <Link
-          to={`/${role}/course/${id}/preview`}
+          to={`/${role}/courses/${id}/preview`}
           className="font-bold text-xl leading-[30px] line-clamp-1"
         >
           {title}
