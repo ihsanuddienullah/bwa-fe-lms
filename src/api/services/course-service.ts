@@ -3,7 +3,6 @@ import type {
   TUpdateCourse,
 } from '../../pages/manager/Courses/CreateCourse/types'
 import type { TCreateCourseContent } from '../../pages/manager/Courses/ManageCourse/CreateContent/types'
-import { snakeCaseKeys } from '../../utils/formatter'
 import { apiInstanceAuth } from '../axios'
 
 export const getCourses = () =>
@@ -15,32 +14,22 @@ export const getCourseById = (courseId: string) =>
 export const getCategories = () =>
   apiInstanceAuth.get('/categories').then((res) => res.data)
 
-export const createCourse = async (data: TCreateCourse) => {
-  const requestPayload = { ...data, category_id: data.categoryId }
-
-  const res = await apiInstanceAuth.post('/courses', requestPayload, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  })
-  return res.data
-}
-
-export const updateCourse = async (courseId: string, data: TUpdateCourse) => {
-  const requestPayload = { ...data, category_id: data.categoryId }
-
-  const res = await apiInstanceAuth.put(
-    `/courses/${courseId}`,
-    requestPayload,
-    {
+export const createCourse = async (data: TCreateCourse) =>
+  apiInstanceAuth
+    .post('/courses', data, {
       headers: { 'Content-Type': 'multipart/form-data' },
-    }
-  )
-  return res.data
-}
+    })
+    .then((res) => res.data)
+
+export const updateCourse = async (courseId: string, data: TUpdateCourse) =>
+  apiInstanceAuth
+    .put(`/courses/${courseId}`, data, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+    .then((res) => res.data)
 
 export const deleteCourse = (courseId: string) =>
   apiInstanceAuth.delete(`/courses/${courseId}`).then((res) => res.data)
 
 export const createCourseContent = (data: TCreateCourseContent) =>
-  apiInstanceAuth
-    .post('/courses/contents', snakeCaseKeys(data))
-    .then((res) => res.data)
+  apiInstanceAuth.post('/courses/contents', data).then((res) => res.data)

@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router'
 import { createCourseContent } from '../../../../../api/services/course-service'
+import { snakeCaseKeys } from '../../../../../utils/formatter'
 import { createCourseContentSchema } from '../../../../../utils/schema'
 import type { TCreateCourseContent } from './types'
 
@@ -17,7 +18,8 @@ const useCustom = () => {
   })
 
   const createCourseContentMutation = useMutation({
-    mutationFn: (payload: TCreateCourseContent) => createCourseContent(payload),
+    mutationFn: (payload: TCreateCourseContent) =>
+      createCourseContent(snakeCaseKeys(payload)),
   })
 
   const onSubmit = useCallback(

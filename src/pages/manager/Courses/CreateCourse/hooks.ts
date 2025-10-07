@@ -16,6 +16,7 @@ import {
   getCourseById,
   updateCourse,
 } from '../../../../api/services/course-service'
+import { snakeCaseKeys } from '../../../../utils/formatter'
 import {
   createCourseSchema,
   updateCourseSchema,
@@ -46,12 +47,25 @@ const useCustom = () => {
   })
 
   const createCourseMutation = useMutation({
-    mutationFn: (payload: TCreateCourse) => createCourse(payload),
+    mutationFn: (payload: TCreateCourse) => {
+      const requestPayload = {
+        ...(snakeCaseKeys(payload) as object),
+        thumbnail: payload.thumbnail,
+      } as TCreateCourse
+
+      return createCourse(requestPayload)
+    },
   })
 
   const updateCourseMutation = useMutation({
-    mutationFn: (payload: TUpdateCourse) =>
-      updateCourse(courseId || '', payload),
+    mutationFn: (payload: TUpdateCourse) => {
+      const requestPayload = {
+        ...(snakeCaseKeys(payload) as object),
+        thumbnail: payload.thumbnail,
+      } as TUpdateCourse
+
+      return updateCourse(courseId || '', requestPayload)
+    },
   })
 
   const onSubmit = useCallback(
