@@ -32,7 +32,7 @@ const useCustom = () => {
           })
 
           if (response.message.includes('success')) {
-            toast.success('Course created successfully')
+            toast.success('Content created successfully')
           }
         }
         navigate(`/manager/courses/${courseId}`)
