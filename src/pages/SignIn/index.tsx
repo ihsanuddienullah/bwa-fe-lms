@@ -49,11 +49,11 @@ const SignIn = () => {
               alt="icon"
             />
             <input
+              {...methods.register('email')}
               type="email"
               id="email"
               className="appearance-none outline-none !bg-transparent w-full font-semibold text-white placeholder:font-normal placeholder:text-[#6B6C7F]"
               placeholder="Write your email address"
-              {...methods.register('email')}
             />
           </div>
           {data.formState.errors.email && (
@@ -71,11 +71,11 @@ const SignIn = () => {
                 alt="icon"
               />
               <input
+                {...methods.register('password')}
                 type="password"
                 id="password"
                 className="appearance-none outline-none !bg-transparent w-full font-semibold text-white placeholder:font-normal placeholder:text-[#6B6C7F]"
                 placeholder="Type your secure password"
-                {...methods.register('password')}
               />
             </div>
             {data.formState.errors.password && (
