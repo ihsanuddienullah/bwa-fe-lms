@@ -2,6 +2,8 @@ import type {
   TCreateCourse,
   TUpdateCourse,
 } from '../../pages/manager/Courses/CreateCourse/types'
+import type { TCreateCourseContent } from '../../pages/manager/Courses/ManageCourse/CreateContent/types'
+import { snakeCaseKeys } from '../../utils/formatter'
 import { apiInstanceAuth } from '../axios'
 
 export const getCourses = () =>
@@ -37,3 +39,8 @@ export const updateCourse = async (courseId: string, data: TUpdateCourse) => {
 
 export const deleteCourse = (courseId: string) =>
   apiInstanceAuth.delete(`/courses/${courseId}`).then((res) => res.data)
+
+export const createCourseContent = (data: TCreateCourseContent) =>
+  apiInstanceAuth
+    .post('/courses/contents', snakeCaseKeys(data))
+    .then((res) => res.data)
