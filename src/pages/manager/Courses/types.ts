@@ -8,7 +8,7 @@ export interface ICourse {
 }
 
 export interface ICourseContent {
-  id: number
+  id: string
   title: string
   type: 'video' | 'text'
   youtube_id: string

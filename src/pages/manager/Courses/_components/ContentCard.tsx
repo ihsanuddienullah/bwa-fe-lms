@@ -1,11 +1,12 @@
 import { Link } from 'react-router'
 
 interface CardContentProps {
-  contentId: number
+  contentId: string
   title: string
   type: 'video' | 'text'
   index: number
   courseId: string
+  handleDeleteCourseContent: (contentId: string, title: string) => void
 }
 
 const CardContent = ({
@@ -14,6 +15,7 @@ const CardContent = ({
   type,
   index,
   courseId,
+  handleDeleteCourseContent,
 }: CardContentProps) => {
   return (
     <div className="card flex items-center gap-5">
@@ -57,7 +59,8 @@ const CardContent = ({
         </Link>
         <button
           type="button"
-          className="w-fit rounded-full p-[14px_20px] bg-[#FF435A] font-semibold text-white text-nowrap"
+          onClick={() => handleDeleteCourseContent(contentId, title)}
+          className="cursor-pointer w-fit rounded-full p-[14px_20px] bg-[#FF435A] font-semibold text-white text-nowrap"
         >
           Delete
         </button>

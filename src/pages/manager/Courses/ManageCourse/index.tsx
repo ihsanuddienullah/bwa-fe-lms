@@ -3,7 +3,7 @@ import ContentCard from '../_components/ContentCard'
 import useCustom from './hooks'
 
 const CourseDetail = () => {
-  const { data } = useCustom()
+  const { data, methods } = useCustom()
 
   return (
     <>
@@ -119,6 +119,7 @@ const CourseDetail = () => {
             title={content.title}
             type={content.type}
             index={index + 1}
+            handleDeleteCourseContent={methods.handleDeleteCourseContent}
           />
         ))}
 

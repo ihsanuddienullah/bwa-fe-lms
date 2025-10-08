@@ -1,7 +1,7 @@
 import { toast, type Toast } from 'react-hot-toast'
 
 interface AlertConfirmationProps {
-  successLabel: string
+  successLabel?: string
   t: Toast
   title: string
   handleConfirm: () => void
@@ -29,7 +29,7 @@ const AlertConfirmation = ({
           onClick={() => {
             handleConfirm()
             toast.dismiss(t.id)
-            toast.success(successLabel)
+            if (successLabel) toast.success(successLabel)
           }}
           className={`text-white px-3 py-1 rounded ${confirmButtonColor}`}
         >

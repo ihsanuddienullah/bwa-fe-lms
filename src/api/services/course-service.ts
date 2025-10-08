@@ -44,3 +44,8 @@ export const updateCourseContent = (
 
 export const getCourseContentById = (contentId: string) =>
   apiInstanceAuth.get(`/courses/contents/${contentId}`).then((res) => res.data)
+
+export const deleteCourseContent = (contentId: string) =>
+  apiInstanceAuth
+    .delete(`/courses/contents/${contentId}`)
+    .then((res) => res.data)
