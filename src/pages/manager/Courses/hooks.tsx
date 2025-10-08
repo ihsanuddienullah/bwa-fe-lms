@@ -10,6 +10,10 @@ import type { IGetCoursesResponse } from '../../../utils/global-types'
 const useCustom = () => {
   const { mutateAsync } = useMutation({
     mutationFn: (courseId: string) => deleteCourse(courseId),
+    onSuccess: () => {
+      toast.success('Course deleted successfully')
+      refetch()
+    },
   })
 
   const { data, isLoading, refetch } = useQuery({
@@ -33,16 +37,14 @@ const useCustom = () => {
             t={t}
             handleConfirm={async () => {
               await mutateAsync(String(courseId))
-              refetch()
             }}
-            title={`Are you sure you want to delete ${title} course?`}
-            successLabel="Course deleted successfully"
+            title={`Are you sure you want to delete ${title}?`}
           />
         ),
         { duration: 5000 }
       )
     },
-    [mutateAsync, refetch]
+    [mutateAsync]
   )
 
   return {
