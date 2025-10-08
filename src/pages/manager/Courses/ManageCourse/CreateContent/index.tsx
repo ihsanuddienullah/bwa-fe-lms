@@ -34,7 +34,7 @@ const CreateContent = () => {
           Course
         </span>
         <span className="last-of-type:after:content-[''] last-of-type:font-semibold">
-          Add Content
+          {data.contentId ? 'Edit' : 'Add'} Content
         </span>
       </div>
       <header className="flex items-center justify-between gap-[30px]">
@@ -48,7 +48,7 @@ const CreateContent = () => {
           </div>
           <div>
             <h1 className="font-extrabold text-[28px] leading-[42px]">
-              Add Content
+              {data.contentId ? 'Edit' : 'Add'} Content
             </h1>
             <p className="text-[#838C9D] mt-[1]">
               Give a best content for the course
@@ -156,6 +156,7 @@ const CreateContent = () => {
         )}
         <div className="flex flex-col gap-[10px]">
           <label className="font-semibold">Content Text</label>
+
           <CKEditor
             editor={ClassicEditor}
             config={{
@@ -192,6 +193,7 @@ const CreateContent = () => {
                 Undo,
               ],
             }}
+            data={methods.getValues('text') || ''}
             onChange={(_, editor) => {
               const data = editor.getData()
               methods.setValue('text', data, { shouldValidate: true })
@@ -212,9 +214,10 @@ const CreateContent = () => {
           </button>
           <button
             type="submit"
+            disabled={data.isSubmitting}
             className="cursor-pointer w-full rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
-            Add Content Now
+            {data.contentId ? 'Edit' : 'Add'} Content Now
           </button>
         </div>
       </form>

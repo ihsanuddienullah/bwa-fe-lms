@@ -23,11 +23,7 @@ const CardContent = ({
         </p>
         <div className="rounded-[20px] bg-[#D9D9D9] overflow-hidden">
           <img
-            src={
-              type === 'video'
-                ? '/assets/images/thumbnails/cover-video.png'
-                : '/assets/images/thumbnails/cover-text.png'
-            }
+            src={`/assets/images/thumbnails/cover-${type}.png`}
             className="w-full h-full object-cover"
             alt="thumbnail"
           />
@@ -40,7 +36,11 @@ const CardContent = ({
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-[6px] mt-[6px]">
             <img
-              src="/assets/images/icons/note-favorite-purple.svg"
+              src={
+                type === 'video'
+                  ? '/assets/images/icons/video-play-purple.svg'
+                  : '/assets/images/icons/note-favorite-purple.svg'
+              }
               className="w-5 h-5"
               alt="icon"
             />
@@ -50,7 +50,7 @@ const CardContent = ({
       </div>
       <div className="flex justify-end items-center gap-3">
         <Link
-          to={`/manager/course/${courseId}/content/edit/${contentId}`}
+          to={`/manager/courses/${courseId}/content/edit/${contentId}`}
           className="w-fit rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"
         >
           Edit Content

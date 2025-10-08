@@ -33,3 +33,14 @@ export const deleteCourse = (courseId: string) =>
 
 export const createCourseContent = (data: TCreateCourseContent) =>
   apiInstanceAuth.post('/courses/contents', data).then((res) => res.data)
+
+export const updateCourseContent = (
+  contentId: string,
+  data: TCreateCourseContent
+) =>
+  apiInstanceAuth
+    .put(`/courses/contents/${contentId}`, data)
+    .then((res) => res.data)
+
+export const getCourseContentById = (contentId: string) =>
+  apiInstanceAuth.get(`/courses/contents/${contentId}`).then((res) => res.data)
