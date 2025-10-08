@@ -201,7 +201,7 @@ const ManageCourse = () => {
           </button>
           <button
             type="submit"
-            disabled={data.submitting}
+            disabled={data.isSubmitting}
             className="w-full rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap cursor-pointer"
           >
             {data.courseId ? 'Edit' : 'Create'} Now

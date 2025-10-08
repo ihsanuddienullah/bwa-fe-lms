@@ -55,6 +55,9 @@ const useCustom = () => {
 
       return createCourse(requestPayload)
     },
+    onSuccess: () => {
+      toast.success('Course created successfully')
+    },
   })
 
   const updateCourseMutation = useMutation({
@@ -66,27 +69,18 @@ const useCustom = () => {
 
       return updateCourse(courseId || '', requestPayload)
     },
+    onSuccess: () => {
+      toast.success('Course updated successfully')
+    },
   })
 
   const onSubmit = useCallback(
     async (value: TCreateCourse | TUpdateCourse) => {
       try {
         if (courseId) {
-          const response = await updateCourseMutation.mutateAsync(
-            value as TUpdateCourse
-          )
-
-          if (response.message.includes('success')) {
-            toast.success('Course updated successfully')
-          }
+          await updateCourseMutation.mutateAsync(value as TUpdateCourse)
         } else {
-          const response = await createCourseMutation.mutateAsync(
-            value as TCreateCourse
-          )
-
-          if (response.message.includes('success')) {
-            toast.success('Course created successfully')
-          }
+          await createCourseMutation.mutateAsync(value as TCreateCourse)
         }
         navigate('/manager/courses')
       } catch (error) {
@@ -151,7 +145,9 @@ const useCustom = () => {
       categories: getCategoriesQuery.data?.data || [],
       courseId,
       formState,
-      submitting: createCourseMutation.isPending,
+      isSubmitting: courseId
+        ? updateCourseMutation.isPending
+        : createCourseMutation.isPending,
       loadingCategories: getCategoriesQuery.isLoading,
       loadingCourseById: getCourseByIdQuery.isLoading,
       thumbnailPreview,
