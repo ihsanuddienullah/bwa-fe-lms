@@ -1,4 +1,4 @@
-import Header from '../../../../../components/Header'
+import Header from '../../../../components/Header'
 
 interface CoursePreviewLayoutProps {
   children: React.ReactNode

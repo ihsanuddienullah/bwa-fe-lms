@@ -1,6 +1,6 @@
-import CoursePreviewLayout from '../../_components/CoursePreviewLayout'
-import CoursePreviewText from '../../_components/CoursePreviewText'
-import CoursePreviewVideo from '../../_components/CoursePreviewVideo'
+import CoursePreviewLayout from './_components/CoursePreviewLayout'
+import CoursePreviewText from './_components/CoursePreviewText'
+import CoursePreviewVideo from './_components/CoursePreviewVideo'
 
 const CoursePreview = () => {
   return (
