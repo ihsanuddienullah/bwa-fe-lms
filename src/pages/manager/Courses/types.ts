@@ -11,9 +11,10 @@ export interface ICourseContent {
   id: string
   title: string
   type: 'video' | 'text'
-  youtube_id: string
+  youtubeId: string
   text: string
   courseId: string
+  isCompleted: boolean
 }
 
 export interface ICourseDetail {

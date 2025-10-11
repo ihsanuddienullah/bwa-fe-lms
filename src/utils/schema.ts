@@ -29,6 +29,7 @@ export const createCourseContentSchema = z
     youtubeId: z.string().optional(),
     text: z.string().optional(),
     courseId: z.string().optional(),
+    isCompleted: z.boolean().optional(),
   })
   .superRefine((values, ctx) => {
     if (values.type === 'video' && !values.youtubeId) {

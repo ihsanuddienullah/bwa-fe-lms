@@ -1,10 +1,20 @@
-const CoursePreviewVideo = () => {
+import type { ICourseContent } from '../../manager/Courses/types'
+
+interface CoursePreviewVideoProps {
+  selectedContent: ICourseContent
+  handleMarkContentAsCompleted: (contentId: string) => void
+}
+
+const CoursePreviewVideo = ({
+  selectedContent,
+  handleMarkContentAsCompleted,
+}: CoursePreviewVideoProps) => {
   return (
     <>
       <div className="flex shrink-0 h-[calc(100vh-110px-104px)] rounded-[20px] overflow-hidden">
         <iframe
           className="w-full aspect-video"
-          src="https://www.youtube.com/embed/tYyPdH32faE?si=heerM3KnIDqdfrZJ"
+          src={`https://www.youtube.com/embed/${selectedContent.youtubeId}?si=heerM3KnIDqdfrZJ`}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
@@ -16,8 +26,9 @@ const CoursePreviewVideo = () => {
           Install Figma Plugins
         </h1>
         <button
+          onClick={() => handleMarkContentAsCompleted(selectedContent.id)}
           type="button"
-          className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
+          className="cursor-pointer w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
         >
           Mark as Completed
         </button>
