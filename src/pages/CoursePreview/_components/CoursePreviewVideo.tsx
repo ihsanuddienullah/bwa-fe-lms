@@ -23,7 +23,7 @@ const CoursePreviewVideo = ({
       </div>
       <div className="flex items-center justify-between gap-5">
         <h1 className="font-bold text-[32px] leading-[48px]">
-          Install Figma Plugins
+          {selectedContent.title}
         </h1>
         <button
           onClick={() => handleMarkContentAsCompleted(selectedContent.id)}

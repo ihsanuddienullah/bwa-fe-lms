@@ -12,9 +12,11 @@ const CoursePreviewText = ({
   return (
     <>
       <div className="flex flex-col gap-5 max-w-[800px] pb-[160px]">
-        <h1 className="font-bold text-[32px] leading-[48px]">
-          {selectedContent.title}
-        </h1>
+        {selectedContent.type === 'text' && (
+          <h1 className="font-bold text-[32px] leading-[48px]">
+            {selectedContent.title}
+          </h1>
+        )}
         <article
           id="Content-wrapper"
           className="prose"
