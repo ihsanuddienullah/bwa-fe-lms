@@ -37,7 +37,11 @@ const Header = () => {
           onClick={methods.toggleDropdown}
         >
           <img
-            src="/assets/images/photos/photo-1.png"
+            src={
+              data.userData.role === 'student'
+                ? data.userData.photo
+                : '/assets/images/photos/photo-1.png'
+            }
             className="w-full h-full object-cover"
             alt="profile photos"
           />
