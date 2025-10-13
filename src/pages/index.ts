@@ -9,6 +9,7 @@ import CreateCourse from './manager/Courses/CreateCourse'
 import CourseDetail from './manager/Courses/ManageCourse'
 import CreateContent from './manager/Courses/ManageCourse/CreateContent'
 import Students from './manager/Students'
+import CreateStudent from './manager/Students/CreateStudent'
 
 export {
   CourseDetail,
@@ -16,6 +17,7 @@ export {
   Courses,
   CreateContent,
   CreateCourse,
+  CreateStudent,
   ManagerOverview,
   Overview,
   PaymentStatus,

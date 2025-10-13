@@ -7,6 +7,7 @@ import {
   Courses,
   CreateContent,
   CreateCourse,
+  CreateStudent,
   Overview,
   PaymentStatus,
   Pricing,
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: 'students',
         element: <Students />,
+      },
+      {
+        path: 'students/create',
+        element: <CreateStudent />,
       },
     ],
   },

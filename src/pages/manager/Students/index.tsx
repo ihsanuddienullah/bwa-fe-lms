@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import StudentCard from './_components/StudentCard'
 import { DUMMY_STUDENTS } from './dummy'
 
@@ -20,12 +21,12 @@ const Students = () => {
           >
             Import File
           </a>
-          <a
-            href="create-new-student.html"
+          <Link
+            to={'/manager/students/create'}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Add Student
-          </a>
+          </Link>
         </div>
       </header>
       <section
