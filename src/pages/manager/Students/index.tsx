@@ -1,8 +1,12 @@
 import { Link } from 'react-router'
 import StudentCard from './_components/StudentCard'
-import { DUMMY_STUDENTS } from './dummy'
+import useCustom from './hooks'
+import type { IStudent } from './types'
 
 const Students = () => {
+  const { data } = useCustom()
+  console.log(data)
+
   return (
     <>
       <header className="flex items-center justify-between gap-[30px]">
@@ -33,13 +37,13 @@ const Students = () => {
         id="CourseList"
         className="flex flex-col w-full rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]"
       >
-        {DUMMY_STUDENTS.map((student) => (
+        {data.students.map((student: IStudent) => (
           <StudentCard
             key={student.id}
             id={student.id}
             name={student.name}
             photo={student.photo}
-            coursesJoined={student.coursesJoined}
+            courses={student.courses}
           />
         ))}
         <div id="Pagination" className="flex items-center gap-3">

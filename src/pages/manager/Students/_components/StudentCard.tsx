@@ -4,10 +4,10 @@ interface StudentCardProps {
   id: string
   name: string
   photo: string
-  coursesJoined: number
+  courses: string[]
 }
 
-const StudentCard = ({ id, name, photo, coursesJoined }: StudentCardProps) => {
+const StudentCard = ({ id, name, photo, courses }: StudentCardProps) => {
   return (
     <div className="card flex items-center gap-5">
       <div className="relative flex shrink-0 w-20 h-20">
@@ -26,7 +26,7 @@ const StudentCard = ({ id, name, photo, coursesJoined }: StudentCardProps) => {
               className="w-5 h-5"
               alt="icon"
             />
-            <p className="text-[#838C9D]">{coursesJoined} Course Joined</p>
+            <p className="text-[#838C9D]">{courses.length} Course Joined</p>
           </div>
         </div>
       </div>
