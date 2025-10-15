@@ -48,3 +48,10 @@ export const createCourseContentSchema = z
       })
     }
   })
+
+export const createStudentSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.email('Invalid email address'),
+  password: z.string().min(5, 'Password must be at least 5 characters long'),
+  photo: z.any().refine((file) => file?.name, { message: 'Photo is required' }),
+})
