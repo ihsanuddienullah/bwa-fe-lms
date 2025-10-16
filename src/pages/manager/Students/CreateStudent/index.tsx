@@ -40,11 +40,13 @@ const CreateStudent = () => {
                 id="trigger-input"
                 className="cursor-pointer absolute top-0 left-0 w-full h-full flex justify-center items-center gap-3 z-0"
               >
-                <img
-                  src="/assets/images/icons/gallery-add-black.svg"
-                  className="w-6 h-6"
-                  alt="icon"
-                />
+                {data.photoPreview === '' && (
+                  <img
+                    src="/assets/images/icons/gallery-add-black.svg"
+                    className="w-6 h-6"
+                    alt="icon"
+                  />
+                )}
               </button>
               {data.photoPreview !== '' && (
                 <img

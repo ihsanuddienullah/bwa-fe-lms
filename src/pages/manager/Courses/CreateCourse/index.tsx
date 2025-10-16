@@ -66,12 +66,16 @@ const ManageCourse = () => {
               className="absolute top-0 left-0 w-full h-full flex justify-center items-center gap-3 z-0 cursor-pointer"
               onClick={() => refs.inputThumbnail.current?.click()}
             >
-              <img
-                src="/assets/images/icons/gallery-add-black.svg"
-                className="w-6 h-6"
-                alt="icon"
-              />
-              <span className="text-[#838C9D]">Add an attachment</span>
+              {data.thumbnailPreview === '' && (
+                <>
+                  <img
+                    src="/assets/images/icons/gallery-add-black.svg"
+                    className="w-6 h-6"
+                    alt="icon"
+                  />
+                  <span className="text-[#838C9D]">Add an attachment</span>
+                </>
+              )}
             </button>
             {data.thumbnailPreview !== '' && (
               <img

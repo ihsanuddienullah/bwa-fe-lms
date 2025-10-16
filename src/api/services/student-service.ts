@@ -5,4 +5,8 @@ export const getStudents = () =>
   apiInstanceAuth.get('/students').then((res) => res.data)
 
 export const createStudent = (data: TCreateStudent) =>
-  apiInstanceAuth.post('/students', data).then((res) => res.data)
+  apiInstanceAuth
+    .post('/students', data, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+    .then((res) => res.data)
