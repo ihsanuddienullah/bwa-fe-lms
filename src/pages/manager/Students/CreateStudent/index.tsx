@@ -8,9 +8,11 @@ const CreateStudent = () => {
       <header className="flex items-center justify-between gap-[30px]">
         <div>
           <h1 className="font-extrabold text-[28px] leading-[42px]">
-            Add Student
+            {data.studentId ? 'Edit' : 'Add'} Student
           </h1>
-          <p className="text-[#838C9D] mt-[1]">Create new future for company</p>
+          <p className="text-[#838C9D] mt-[1]">
+            {data.studentId ? 'Edit' : 'Create'} new future for company
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <a
@@ -27,7 +29,7 @@ const CreateStudent = () => {
       >
         <div className="relative flex flex-col gap-[10px]">
           <label htmlFor="photo" className="font-semibold">
-            Add a Photo
+            {data.studentId ? 'Edit' : 'Add a'} Photo
           </label>
           <div className="flex items-center gap-[14px]">
             <div
@@ -62,7 +64,7 @@ const CreateStudent = () => {
               id="delete-preview"
               onClick={methods.handleDeletePreview}
               className={`cursor-pointer w-12 h-12 rounded-full z-10 ${
-                data.photoPreview === '' ? 'hidden' : ''
+                data.photoPreview === '' || data.studentId ? 'hidden' : ''
               }`}
             >
               <img src="/assets/images/icons/delete.svg" alt="delete" />
@@ -134,7 +136,9 @@ const CreateStudent = () => {
             </span>
           )}
         </div>
-        <div className="flex flex-col gap-[10px]">
+        <div
+          className={`flex flex-col gap-[10px] ${data.studentId && 'hidden'}`}
+        >
           <label htmlFor="password" className="font-semibold">
             Password
           </label>
@@ -170,7 +174,7 @@ const CreateStudent = () => {
             type="submit"
             className="cursor-pointer w-full rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
-            Add Now
+            {data.studentId ? 'Edit' : 'Add'} Now
           </button>
         </div>
       </form>

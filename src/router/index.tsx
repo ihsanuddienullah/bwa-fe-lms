@@ -109,6 +109,10 @@ const router = createBrowserRouter([
         path: 'students/create',
         element: <CreateStudent />,
       },
+      {
+        path: 'students/edit/:student_id',
+        element: <CreateStudent />,
+      },
     ],
   },
   {
