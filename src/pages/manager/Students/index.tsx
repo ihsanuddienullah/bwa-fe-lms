@@ -4,8 +4,7 @@ import useCustom from './hooks'
 import type { IStudent } from './types'
 
 const Students = () => {
-  const { data } = useCustom()
-  console.log(data)
+  const { data, methods } = useCustom()
 
   return (
     <>
@@ -44,6 +43,7 @@ const Students = () => {
             name={student.name}
             photo={student.photo}
             courses={student.courses}
+            handleDeleteStudent={methods.handleDeleteStudent}
           />
         ))}
         <div id="Pagination" className="flex items-center gap-3">

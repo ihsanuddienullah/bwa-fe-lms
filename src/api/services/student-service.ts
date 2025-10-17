@@ -20,3 +20,6 @@ export const updateStudent = (studentId: string, data: TCreateStudent) =>
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then((res) => res.data)
+
+export const deleteStudent = (studentId: string) =>
+  apiInstanceAuth.delete(`/students/${studentId}`).then((res) => res.data)

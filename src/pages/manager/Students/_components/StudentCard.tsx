@@ -5,9 +5,16 @@ interface StudentCardProps {
   name: string
   photo: string
   courses: string[]
+  handleDeleteStudent: (studentId: string, name: string) => void
 }
 
-const StudentCard = ({ id, name, photo, courses }: StudentCardProps) => {
+const StudentCard = ({
+  id,
+  name,
+  photo,
+  courses,
+  handleDeleteStudent,
+}: StudentCardProps) => {
   return (
     <div className="card flex items-center gap-5">
       <div className="relative flex shrink-0 w-20 h-20">
@@ -39,7 +46,8 @@ const StudentCard = ({ id, name, photo, courses }: StudentCardProps) => {
         </Link>
         <button
           type="button"
-          className="w-fit rounded-full p-[14px_20px] bg-[#FF435A] font-semibold text-white text-nowrap"
+          onClick={() => handleDeleteStudent(id, name)}
+          className="cursor-pointer w-fit rounded-full p-[14px_20px] bg-[#FF435A] font-semibold text-white text-nowrap"
         >
           Delete
         </button>
