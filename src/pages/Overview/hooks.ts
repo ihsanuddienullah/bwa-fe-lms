@@ -1,8 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { getCourses } from '../../api/services/course-service'
 import { getStudents } from '../../api/services/student-service'
+import { useGetUserData } from '../../utils/custom-hooks'
 
 const useCustom = () => {
+  const { role } = useGetUserData()
+
   const getCoursesQuery = useQuery({
     queryKey: ['courses'],
     queryFn: () => getCourses(),
@@ -11,6 +14,7 @@ const useCustom = () => {
   const getStudentsQuery = useQuery({
     queryKey: ['students'],
     queryFn: () => getStudents(),
+    enabled: role === 'manager',
   })
 
   return {
