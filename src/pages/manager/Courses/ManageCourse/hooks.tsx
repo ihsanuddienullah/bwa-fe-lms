@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useParams } from 'react-router'
 import {
@@ -12,6 +12,8 @@ import type { ICourseDetail } from '../types'
 
 const useCustomHook = () => {
   const courseId = useParams().course_id
+
+  const [selectedWidget, setSetselectedWidget] = useState('student')
 
   const { mutateAsync } = useMutation({
     mutationFn: (contentId: string) => deleteCourseContent(contentId),
@@ -31,6 +33,10 @@ const useCustomHook = () => {
     () => camelCaseKeys(getCourseByIdQuery.data?.data),
     [getCourseByIdQuery.data]
   )
+
+  const handleSelectWidget = useCallback((widget: string) => {
+    setSetselectedWidget(widget)
+  }, [])
 
   const handleDeleteCourseContent = useCallback(
     async (contentId: string, title: string) => {
@@ -55,9 +61,11 @@ const useCustomHook = () => {
       courseId,
       courseById,
       loadingCourseById: getCourseByIdQuery.isLoading,
+      selectedWidget,
     },
     methods: {
       handleDeleteCourseContent,
+      handleSelectWidget,
     },
   }
 }

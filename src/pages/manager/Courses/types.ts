@@ -17,6 +17,12 @@ export interface ICourseContent {
   isCompleted: boolean
 }
 
+export interface IStudent {
+  id: string
+  name: string
+  photo: string
+}
+
 export interface ICourseDetail {
   id: string
   title: string
@@ -27,4 +33,5 @@ export interface ICourseDetail {
     name: string
   }
   contents: ICourseContent[]
+  students: IStudent[]
 }

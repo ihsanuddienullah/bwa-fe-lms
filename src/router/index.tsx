@@ -102,6 +102,10 @@ const router = createBrowserRouter([
         element: <CreateContent />,
       },
       {
+        path: 'courses/:course_id/student/add',
+        element: <CreateContent />,
+      },
+      {
         path: 'students',
         element: <Students />,
       },
