@@ -4,3 +4,10 @@ export interface ILatestCourse {
   thumbnail: string
   category: string
 }
+
+export interface ILatestStudent {
+  _id: string
+  name: string
+  photo: string
+  courses: string[]
+}
