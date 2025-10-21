@@ -135,7 +135,7 @@ const CourseDetail = () => {
               id={student.id}
               name={student.name}
               photo={student.photo}
-              handleDeleteStudent={() => {}}
+              handleDeleteCourseStudent={methods.handleDeleteCourseStudent}
             />
           ))}
 

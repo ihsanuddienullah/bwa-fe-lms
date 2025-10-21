@@ -2,14 +2,14 @@ interface StudentCardProps {
   id: string
   name: string
   photo: string
-  handleDeleteStudent: (studentId: string, name: string) => void
+  handleDeleteCourseStudent: (studentId: string, name: string) => void
 }
 
 const StudentCard = ({
   id,
   name,
   photo,
-  handleDeleteStudent,
+  handleDeleteCourseStudent,
 }: StudentCardProps) => {
   return (
     <div className="card flex items-center gap-5">
@@ -26,7 +26,7 @@ const StudentCard = ({
       <div className="flex justify-end items-center gap-3">
         <button
           type="button"
-          onClick={() => handleDeleteStudent(id, name)}
+          onClick={() => handleDeleteCourseStudent(id, name)}
           className="cursor-pointer w-fit rounded-full p-[14px_20px] bg-[#FF435A] font-semibold text-white text-nowrap"
         >
           Delete

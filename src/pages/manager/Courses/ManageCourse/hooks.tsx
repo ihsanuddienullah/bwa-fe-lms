@@ -4,6 +4,7 @@ import toast from 'react-hot-toast'
 import { useParams } from 'react-router'
 import {
   deleteCourseContent,
+  deleteCourseStudent,
   getCourseById,
 } from '../../../../api/services/course-service'
 import { AlertConfirmation } from '../../../../components/Alert'
@@ -15,10 +16,24 @@ const useCustomHook = () => {
 
   const [selectedWidget, setSetselectedWidget] = useState('student')
 
-  const { mutateAsync } = useMutation({
+  const deleteCourseContentMutation = useMutation({
     mutationFn: (contentId: string) => deleteCourseContent(contentId),
     onSuccess: () => {
       toast.success('Content deleted successfully')
+      getCourseByIdQuery.refetch()
+    },
+  })
+
+  const deleteCourseStudentMutation = useMutation({
+    mutationFn: (studentId: string) => {
+      const payload = {
+        student_id: studentId,
+      }
+
+      return deleteCourseStudent(courseId || '', payload)
+    },
+    onSuccess: () => {
+      toast.success('Student deleted successfully')
       getCourseByIdQuery.refetch()
     },
   })
@@ -45,7 +60,7 @@ const useCustomHook = () => {
           <AlertConfirmation
             t={t}
             handleConfirm={async () => {
-              await mutateAsync(String(contentId))
+              await deleteCourseContentMutation.mutateAsync(String(contentId))
             }}
             title={`Are you sure you want to delete ${title}?`}
           />
@@ -53,7 +68,25 @@ const useCustomHook = () => {
         { duration: 5000 }
       )
     },
-    [mutateAsync]
+    [deleteCourseContentMutation]
+  )
+
+  const handleDeleteCourseStudent = useCallback(
+    async (studentId: string, name: string) => {
+      toast(
+        (t) => (
+          <AlertConfirmation
+            t={t}
+            handleConfirm={async () => {
+              await deleteCourseStudentMutation.mutateAsync(String(studentId))
+            }}
+            title={`Are you sure you want to delete ${name}?`}
+          />
+        ),
+        { duration: 5000 }
+      )
+    },
+    [deleteCourseStudentMutation]
   )
 
   return {
@@ -65,6 +98,7 @@ const useCustomHook = () => {
     },
     methods: {
       handleDeleteCourseContent,
+      handleDeleteCourseStudent,
       handleSelectWidget,
     },
   }

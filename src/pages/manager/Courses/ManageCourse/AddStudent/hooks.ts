@@ -4,10 +4,8 @@ import { useCallback, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router'
-import {
-  addCourseStudent,
-  getStudents,
-} from '../../../../../api/services/student-service'
+import { addCourseStudent } from '../../../../../api/services/course-service'
+import { getStudents } from '../../../../../api/services/student-service'
 import { camelCaseKeys, snakeCaseKeys } from '../../../../../utils/formatter'
 import { addCourseStudentSchema } from '../../../../../utils/schema'
 import type { IStudent } from '../../types'

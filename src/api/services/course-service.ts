@@ -55,3 +55,11 @@ export const addCourseStudent = (courseId: string, data: TAddCourseStudent) =>
   apiInstanceAuth
     .post(`/courses/students/${courseId}`, data)
     .then((res) => res.data)
+
+export const deleteCourseStudent = (
+  courseId: string,
+  data: { student_id: string }
+) =>
+  apiInstanceAuth
+    .put(`/courses/students/${courseId}`, data)
+    .then((res) => res.data)
