@@ -2,6 +2,7 @@ import type {
   TCreateCourse,
   TUpdateCourse,
 } from '../../pages/manager/Courses/CreateCourse/types'
+import type { TAddCourseStudent } from '../../pages/manager/Courses/ManageCourse/AddStudent/types'
 import type { TCreateCourseContent } from '../../pages/manager/Courses/ManageCourse/CreateContent/types'
 import { apiInstanceAuth } from '../axios'
 
@@ -48,4 +49,9 @@ export const getCourseContentById = (contentId: string) =>
 export const deleteCourseContent = (contentId: string) =>
   apiInstanceAuth
     .delete(`/courses/contents/${contentId}`)
+    .then((res) => res.data)
+
+export const addCourseStudent = (courseId: string, data: TAddCourseStudent) =>
+  apiInstanceAuth
+    .post(`/courses/students/${courseId}`, data)
     .then((res) => res.data)
