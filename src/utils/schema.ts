@@ -60,3 +60,7 @@ export const updateStudentSchema = createStudentSchema.extend({
   photo: z.any().optional(),
   password: z.string().optional(),
 })
+
+export const addCourseStudentSchema = z.object({
+  studentId: z.string().min(1, 'Please select a student'),
+})

@@ -2,6 +2,7 @@ import { createBrowserRouter, redirect } from 'react-router'
 import secureLocalStorage from 'react-secure-storage'
 import Layout from '../components/Layout'
 import {
+  AddStudent,
   CourseDetail,
   CoursePreview,
   Courses,
@@ -103,7 +104,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'courses/:course_id/student/add',
-        element: <CreateContent />,
+        element: <AddStudent />,
       },
       {
         path: 'students',

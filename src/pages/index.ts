@@ -7,11 +7,13 @@ import SignUp from './SignUp'
 import Courses from './manager/Courses'
 import CreateCourse from './manager/Courses/CreateCourse'
 import CourseDetail from './manager/Courses/ManageCourse'
+import AddStudent from './manager/Courses/ManageCourse/AddStudent'
 import CreateContent from './manager/Courses/ManageCourse/CreateContent'
 import Students from './manager/Students'
 import CreateStudent from './manager/Students/CreateStudent'
 
 export {
+  AddStudent,
   CourseDetail,
   CoursePreview,
   Courses,
