@@ -98,7 +98,7 @@ const SignIn = () => {
           type="submit"
           className="w-full rounded-full border p-[14px_20px] text-center font-semibold text-white bg-[#662FFF] border-[#8661EE] shadow-[-10px_-6px_10px_0_#7F33FF_inset]"
         >
-          Sign In to Manage
+          Sign In
         </button>
       </form>
     </div>

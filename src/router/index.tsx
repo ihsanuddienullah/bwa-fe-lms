@@ -44,6 +44,19 @@ const router = createBrowserRouter([
   {
     path: '/sign-up',
     element: <SignUp />,
+    loader: () => {
+      const userData = secureLocalStorage.getItem(STORAGE_KEY) as IStorageKey
+
+      if (userData) {
+        if (userData.role === 'manager') {
+          throw redirect('/manager/overview')
+        } else {
+          throw redirect('/student/overview')
+        }
+      }
+
+      return null
+    },
   },
   {
     path: '/pricing',
