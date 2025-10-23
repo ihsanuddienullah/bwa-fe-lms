@@ -11,3 +11,10 @@ export interface ILatestStudent {
   photo: string
   courses: string[]
 }
+
+export interface IOverview {
+  totalStudents: number
+  totalCourses: number
+  totalVideoContents: number
+  totalTextContents: number
+}
