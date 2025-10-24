@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { getCourses } from '../../api/services/course-service'
 import { getOverview } from '../../api/services/overview-service'
-import { getStudents } from '../../api/services/student-service'
 import { useGetUserData } from '../../utils/custom-hooks'
 import { camelCaseKeys } from '../../utils/formatter'
 import type { IOverview } from './types'
@@ -13,6 +12,7 @@ const useCustom = () => {
   const getOverviewQuery = useQuery({
     queryKey: ['overview'],
     queryFn: () => getOverview(),
+    enabled: role === 'manager',
   })
 
   const overviewData: IOverview = useMemo(
@@ -25,19 +25,11 @@ const useCustom = () => {
     queryFn: () => getCourses(),
   })
 
-  const getStudentsQuery = useQuery({
-    queryKey: ['students'],
-    queryFn: () => getStudents(),
-    enabled: role === 'manager',
-  })
-
   return {
     data: {
       overviewData,
       coursesLoading: getCoursesQuery.isLoading,
       courses: getCoursesQuery.data?.data || [],
-      studentsLoading: getStudentsQuery.isLoading,
-      students: getStudentsQuery.data?.data || [],
     },
     methods: {},
   }

@@ -17,4 +17,5 @@ export interface IOverview {
   totalCourses: number
   totalVideoContents: number
   totalTextContents: number
+  latestStudents: ILatestStudent[]
 }

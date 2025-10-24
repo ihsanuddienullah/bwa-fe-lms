@@ -13,7 +13,7 @@ const LatestStudents = ({ studentList }: LatestStudentsProps) => {
       <h2 className="font-extrabold text-[22px] leading-[33px]">
         Latest Students
       </h2>
-      {studentList.map((student) => (
+      {studentList?.map((student) => (
         <div className="card flex items-center gap-5" key={student._id}>
           <div className="flex shrink-0 w-20 h-20 rounded-[20px] bg-[#D9D9D9] overflow-hidden">
             <img

@@ -42,7 +42,7 @@ const Overview = ({ role = 'manager' }: OverviewProps) => {
       <StatsOverview overviewData={data.overviewData} />
       <div className="grid grid-cols-2 gap-[30px]">
         <LatestCourse role={role} courseList={data?.courses} />
-        <LatestStudents studentList={data?.students} />
+        <LatestStudents studentList={data.overviewData?.latestStudents} />
       </div>
     </>
   )
