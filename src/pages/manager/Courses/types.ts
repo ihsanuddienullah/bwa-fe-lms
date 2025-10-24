@@ -1,26 +1,37 @@
-export interface Course {
-  id: number
-  title: string
-  thumbnail: string
-  totalStudents: number
-  category: string
-}
-
-export interface CourseContent {
-  id: number
-  title: string
-  type: 'video' | 'text'
-  thumbnail: string
-  orderNumber: number
-}
-
-export interface CourseDetail {
+export interface ICourse {
   id: string
   title: string
   thumbnail: string
   totalStudents: number
   category: string
-  totalContents: number
-  hasCertificate: boolean
-  contents: CourseContent[]
+  students: string[]
+}
+
+export interface ICourseContent {
+  id: string
+  title: string
+  type: 'video' | 'text'
+  youtubeId: string
+  text: string
+  courseId: string
+  isCompleted: boolean
+}
+
+export interface IStudent {
+  id: string
+  name: string
+  photo: string
+}
+
+export interface ICourseDetail {
+  id: string
+  title: string
+  thumbnail: string
+  totalStudents: number
+  category: {
+    id: string
+    name: string
+  }
+  contents: ICourseContent[]
+  students: IStudent[]
 }

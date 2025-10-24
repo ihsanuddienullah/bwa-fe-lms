@@ -1,21 +1,21 @@
 import { Link } from 'react-router'
 
 interface CardContentProps {
-  id: number
+  contentId: string
   title: string
-  thumbnail: string
   type: 'video' | 'text'
   index: number
-  courseId: number
+  courseId: string
+  handleDeleteCourseContent: (contentId: string, title: string) => void
 }
 
 const CardContent = ({
-  id,
+  contentId,
   title,
-  thumbnail,
   type,
   index,
   courseId,
+  handleDeleteCourseContent,
 }: CardContentProps) => {
   return (
     <div className="card flex items-center gap-5">
@@ -25,7 +25,7 @@ const CardContent = ({
         </p>
         <div className="rounded-[20px] bg-[#D9D9D9] overflow-hidden">
           <img
-            src={thumbnail}
+            src={`/assets/images/thumbnails/cover-${type}.png`}
             className="w-full h-full object-cover"
             alt="thumbnail"
           />
@@ -38,7 +38,11 @@ const CardContent = ({
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-[6px] mt-[6px]">
             <img
-              src="/assets/images/icons/note-favorite-purple.svg"
+              src={
+                type === 'video'
+                  ? '/assets/images/icons/video-play-purple.svg'
+                  : '/assets/images/icons/note-favorite-purple.svg'
+              }
               className="w-5 h-5"
               alt="icon"
             />
@@ -48,14 +52,15 @@ const CardContent = ({
       </div>
       <div className="flex justify-end items-center gap-3">
         <Link
-          to={`/manager/course/${courseId}/content/${id}`}
+          to={`/manager/courses/${courseId}/content/edit/${contentId}`}
           className="w-fit rounded-full border border-[#060A23] p-[14px_20px] font-semibold text-nowrap"
         >
           Edit Content
         </Link>
         <button
           type="button"
-          className="w-fit rounded-full p-[14px_20px] bg-[#FF435A] font-semibold text-white text-nowrap"
+          onClick={() => handleDeleteCourseContent(contentId, title)}
+          className="cursor-pointer w-fit rounded-full p-[14px_20px] bg-[#FF435A] font-semibold text-white text-nowrap"
         >
           Delete
         </button>

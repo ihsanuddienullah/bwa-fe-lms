@@ -2,14 +2,17 @@ import { Link } from 'react-router'
 import LatestCourse from './_components/LatestCourses'
 import LatestStudents from './_components/LatestStudents'
 import StatsOverview from './_components/StatsOverview'
+import useCustom from './hooks'
 
 interface OverviewProps {
   role?: 'manager' | 'student'
 }
 
 const Overview = ({ role = 'manager' }: OverviewProps) => {
+  const { data } = useCustom()
+
   if (role === 'student') {
-    return <LatestCourse />
+    return <LatestCourse role={role} courseList={data?.courses} />
   }
 
   return (
@@ -36,10 +39,10 @@ const Overview = ({ role = 'manager' }: OverviewProps) => {
           </Link>
         </div>
       </header>
-      <StatsOverview />
+      <StatsOverview overviewData={data.overviewData} />
       <div className="grid grid-cols-2 gap-[30px]">
-        <LatestCourse />
-        <LatestStudents />
+        <LatestCourse role={role} courseList={data?.courses} />
+        <LatestStudents studentList={data.overviewData?.latestStudents} />
       </div>
     </>
   )

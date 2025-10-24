@@ -1,4 +1,10 @@
-const StatsOverview = () => {
+import type { IOverview } from '../types'
+
+interface StatsOverviewProps {
+  overviewData: IOverview
+}
+
+const StatsOverview = ({ overviewData }: StatsOverviewProps) => {
   return (
     <section
       id="Stats"
@@ -12,7 +18,9 @@ const StatsOverview = () => {
             alt="icon"
           />
           <div>
-            <p className="font-extrabold text-2xl leading-[36px]">189,498</p>
+            <p className="font-extrabold text-2xl leading-[36px]">
+              {overviewData?.totalStudents}
+            </p>
             <p className="text-[#838C9D]">Total Students</p>
           </div>
         </div>
@@ -23,7 +31,9 @@ const StatsOverview = () => {
             alt="icon"
           />
           <div>
-            <p className="font-extrabold text-2xl leading-[36px]">7,221</p>
+            <p className="font-extrabold text-2xl leading-[36px]">
+              {overviewData?.totalCourses}
+            </p>
             <p className="text-[#838C9D]">Total Courses</p>
           </div>
         </div>
@@ -34,7 +44,9 @@ const StatsOverview = () => {
             alt="icon"
           />
           <div>
-            <p className="font-extrabold text-2xl leading-[36px]">893,891</p>
+            <p className="font-extrabold text-2xl leading-[36px]">
+              {overviewData?.totalVideoContents}
+            </p>
             <p className="text-[#838C9D]">Video Content</p>
           </div>
         </div>
@@ -45,7 +57,9 @@ const StatsOverview = () => {
             alt="icon"
           />
           <div>
-            <p className="font-extrabold text-2xl leading-[36px]">12,812</p>
+            <p className="font-extrabold text-2xl leading-[36px]">
+              {overviewData?.totalTextContents}
+            </p>
             <p className="text-[#838C9D]">Text Content</p>
           </div>
         </div>

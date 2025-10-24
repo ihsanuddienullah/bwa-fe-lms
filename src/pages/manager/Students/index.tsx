@@ -1,7 +1,11 @@
+import { Link } from 'react-router'
 import StudentCard from './_components/StudentCard'
-import { DUMMY_STUDENTS } from './dummy'
+import useCustom from './hooks'
+import type { IStudent } from './types'
 
 const Students = () => {
+  const { data, methods } = useCustom()
+
   return (
     <>
       <header className="flex items-center justify-between gap-[30px]">
@@ -20,25 +24,26 @@ const Students = () => {
           >
             Import File
           </a>
-          <a
-            href="create-new-student.html"
+          <Link
+            to={'/manager/students/create'}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             Add Student
-          </a>
+          </Link>
         </div>
       </header>
       <section
         id="CourseList"
         className="flex flex-col w-full rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]"
       >
-        {DUMMY_STUDENTS.map((student) => (
+        {data.students.map((student: IStudent) => (
           <StudentCard
             key={student.id}
             id={student.id}
             name={student.name}
             photo={student.photo}
-            coursesJoined={student.coursesJoined}
+            courses={student.courses}
+            handleDeleteStudent={methods.handleDeleteStudent}
           />
         ))}
         <div id="Pagination" className="flex items-center gap-3">

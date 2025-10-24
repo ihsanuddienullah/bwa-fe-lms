@@ -1,6 +1,6 @@
-export interface Student {
+export interface IStudent {
   id: string
   name: string
   photo: string
-  coursesJoined: number
+  courses: string[]
 }

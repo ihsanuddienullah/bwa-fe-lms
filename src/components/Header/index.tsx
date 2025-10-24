@@ -25,8 +25,10 @@ const Header = () => {
       </form>
       <div className="relative flex items-center justify-end gap-[14px]">
         <div className="text-right">
-          <p className="font-semibold">Shayna Angga</p>
-          <p className="text-sm leading-[21px] text-[#838C9D]">Manager</p>
+          <p className="font-semibold capitalize">{data.userData?.name}</p>
+          <p className="text-sm leading-[21px] text-[#838C9D] capitalize">
+            {data.userData?.role}
+          </p>
         </div>
         <button
           type="button"
@@ -35,14 +37,18 @@ const Header = () => {
           onClick={methods.toggleDropdown}
         >
           <img
-            src="/assets/images/photos/photo-1.png"
+            src={
+              data.userData.role === 'student'
+                ? data.userData.photo
+                : '/assets/images/photos/photo-1.png'
+            }
             className="w-full h-full object-cover"
             alt="profile photos"
           />
         </button>
         <div
           id="ProfileDropdown"
-          className={`absolute top-full ${
+          className={`absolute top-full z-10 ${
             data.profileDropdown ? 'block' : 'hidden'
           }`}
         >
@@ -56,8 +62,11 @@ const Header = () => {
             <li className="font-semibold">
               <Link to="#">Settings</Link>
             </li>
-            <li className="font-semibold">
-              <Link to="/">Logout</Link>
+            <li
+              className="cursor-pointer font-semibold"
+              onClick={methods.handleLogout}
+            >
+              Logout
             </li>
           </ul>
         </div>

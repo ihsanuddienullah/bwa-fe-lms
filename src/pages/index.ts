@@ -1,26 +1,30 @@
+import CoursePreview from './CoursePreview'
 import { default as ManagerOverview, default as Overview } from './Overview'
+import PaymentStatus from './PaymentStatus'
 import Pricing from './Pricing'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
-import SuccessCheckout from './SuccessCheckout'
 import Courses from './manager/Courses'
 import CreateCourse from './manager/Courses/CreateCourse'
 import CourseDetail from './manager/Courses/ManageCourse'
-import CoursePreview from './manager/Courses/ManageCourse/CoursePreview'
+import AddStudent from './manager/Courses/ManageCourse/AddStudent'
 import CreateContent from './manager/Courses/ManageCourse/CreateContent'
 import Students from './manager/Students'
+import CreateStudent from './manager/Students/CreateStudent'
 
 export {
+  AddStudent,
   CourseDetail,
   CoursePreview,
   Courses,
   CreateContent,
   CreateCourse,
+  CreateStudent,
   ManagerOverview,
   Overview,
+  PaymentStatus,
   Pricing,
   SignIn,
   SignUp,
   Students,
-  SuccessCheckout,
 }
