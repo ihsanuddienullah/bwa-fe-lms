@@ -24,6 +24,7 @@ const useCustom = () => {
       addCourseStudent(courseId || '', snakeCaseKeys(payload)),
     onSuccess: () => {
       toast.success('Student added successfully')
+      navigate(-1)
     },
   })
 
@@ -44,12 +45,11 @@ const useCustom = () => {
     async (value: TAddCourseStudent) => {
       try {
         await addCourseStudentMutation.mutateAsync(value)
-        navigate(-1)
       } catch (error) {
         console.log(error)
       }
     },
-    [addCourseStudentMutation, navigate]
+    [addCourseStudentMutation]
   )
 
   return {

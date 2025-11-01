@@ -46,6 +46,7 @@ const useCustom = () => {
     mutationFn: (payload: TCreateStudent) => createStudent(payload),
     onSuccess: () => {
       toast.success('Student created successfully')
+      navigate('/manager/students')
     },
   })
 
@@ -54,6 +55,7 @@ const useCustom = () => {
       updateStudent(studentId || '', snakeCaseKeys(payload)),
     onSuccess: () => {
       toast.success('Student updated successfully')
+      navigate('/manager/students')
     },
   })
 
@@ -65,12 +67,11 @@ const useCustom = () => {
         } else {
           await createStudentMutation.mutateAsync(value as TCreateStudent)
         }
-        navigate('/manager/students')
       } catch (error) {
         console.log(error)
       }
     },
-    [createStudentMutation, updateStudentMutation, navigate, studentId]
+    [createStudentMutation, updateStudentMutation, studentId]
   )
 
   const onPhotoChange = useCallback(

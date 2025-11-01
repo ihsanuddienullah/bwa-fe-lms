@@ -34,6 +34,7 @@ const useCustom = () => {
       createCourseContent(snakeCaseKeys(payload)),
     onSuccess: () => {
       toast.success('Content created successfully')
+      navigate(`/manager/courses/${courseId}`)
     },
   })
 
@@ -42,6 +43,7 @@ const useCustom = () => {
       updateCourseContent(contentId || '', snakeCaseKeys(payload)),
     onSuccess: () => {
       toast.success('Content updated successfully')
+      navigate(`/manager/courses/${courseId}`)
     },
   })
 
@@ -59,7 +61,6 @@ const useCustom = () => {
             courseId,
           })
         }
-        navigate(`/manager/courses/${courseId}`)
       } catch (error) {
         console.error(error)
       }
@@ -69,7 +70,6 @@ const useCustom = () => {
       courseId,
       createCourseContentMutation,
       updateCourseContentMutation,
-      navigate,
     ]
   )
 
