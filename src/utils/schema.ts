@@ -64,3 +64,7 @@ export const updateStudentSchema = createStudentSchema.extend({
 export const addCourseStudentSchema = z.object({
   studentId: z.string().min(1, 'Please select a student'),
 })
+
+export const createCategorySchema = z.object({
+  name: z.string().min(1, 'Category name is required'),
+})

@@ -37,7 +37,7 @@ export const SIDEBAR_MENU = (
       },
       {
         title: 'Categories',
-        path: '/categories',
+        path: '/manager/categories',
         icon: '/assets/images/icons/crown-white.svg',
         roles: [ROLES.MANAGER],
       },

@@ -3,9 +3,11 @@ import secureLocalStorage from 'react-secure-storage'
 import Layout from '../components/Layout'
 import {
   AddStudent,
+  Categories,
   CourseDetail,
   CoursePreview,
   Courses,
+  CreateCategory,
   CreateContent,
   CreateCourse,
   CreateStudent,
@@ -118,6 +120,14 @@ const router = createBrowserRouter([
       {
         path: 'courses/:course_id/student/add',
         element: <AddStudent />,
+      },
+      {
+        path: 'categories',
+        element: <Categories />,
+      },
+      {
+        path: 'categories/create',
+        element: <CreateCategory />,
       },
       {
         path: 'students',
