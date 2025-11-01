@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar'
 import useCustom from './hooks'
 
 const Pricing = () => {
-  const { methods } = useCustom()
+  const { data, methods } = useCustom()
 
   return (
     <div className="relative flex flex-col flex-1 p-[10px]">
@@ -143,7 +143,11 @@ const Pricing = () => {
           </div>
           <hr className="border-[#262A56]" />
           <div className="flex flex-col gap-3">
-            <button type="button" onClick={methods.handleCheckout}>
+            <button
+              type="button"
+              onClick={methods.handleCheckout}
+              disabled={data.isPending}
+            >
               <div className="cursor-pointer flex items-center justify-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300 hover:bg-[#662FFF] hover:border-[#8661EE] hover:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#662FFF] border-[#8661EE] shadow-[-10px_-6px_10px_0_#7F33FF_inset]">
                 <span className="font-semibold text-white">
                   Choose This Plan

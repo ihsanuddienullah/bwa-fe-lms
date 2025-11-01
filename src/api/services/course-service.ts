@@ -1,3 +1,4 @@
+import type { TCreateCategory } from '../../pages/manager/Categories/CreateCategory/types'
 import type {
   TCreateCourse,
   TUpdateCourse,
@@ -14,6 +15,12 @@ export const getCourseById = (courseId: string) =>
 
 export const getCategories = () =>
   apiInstanceAuth.get('/categories').then((res) => res.data)
+
+export const createCategory = (data: TCreateCategory) =>
+  apiInstanceAuth.post('/categories', data).then((res) => res.data)
+
+export const deleteCategory = (categoryId: string) =>
+  apiInstanceAuth.delete(`/categories/${categoryId}`).then((res) => res.data)
 
 export const createCourse = async (data: TCreateCourse) =>
   apiInstanceAuth

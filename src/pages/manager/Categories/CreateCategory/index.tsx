@@ -1,7 +1,6 @@
-import type { IStudent } from '../../types'
 import useCustom from './hooks'
 
-const AddStudent = () => {
+const CreateCategory = () => {
   const { data, methods } = useCustom()
 
   return (
@@ -9,9 +8,9 @@ const AddStudent = () => {
       <header className="flex items-center justify-between gap-[30px]">
         <div>
           <h1 className="font-extrabold text-[28px] leading-[42px]">
-            Add Student
+            Create Category
           </h1>
-          <p className="text-[#838C9D] mt-[1]">Keep your student happy</p>
+          <p className="text-[#838C9D] mt-[1]">Add a new category</p>
         </div>
       </header>
       <form
@@ -19,38 +18,26 @@ const AddStudent = () => {
         className="flex flex-col w-[550px] rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]"
       >
         <div className="flex flex-col gap-[10px]">
-          <label htmlFor="student" className="font-semibold">
-            Select Student
+          <label htmlFor="title" className="font-semibold">
+            Category Name
           </label>
           <div className="flex items-center w-full rounded-full border border-[#CFDBEF] gap-3 px-5 transition-all duration-300 focus-within:ring-2 focus-within:ring-[#662FFF]">
             <img
-              src="/assets/images/icons/bill-black.svg"
+              src="/assets/images/icons/note-favorite-black.svg"
               className="w-6 h-6"
               alt="icon"
             />
-            <select
-              {...methods.register('studentId')}
-              id="studentId"
-              className="appearance-none outline-none w-full py-3 px-2 -mx-2 font-semibold placeholder:font-normal placeholder:text-[#838C9D] !bg-transparent"
-            >
-              <option value="" hidden>
-                Choose one student
-              </option>
-              {data.students.map((item: IStudent) => (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-            <img
-              src="/assets/images/icons/arrow-down.svg"
-              className="w-6 h-6"
-              alt="icon"
+            <input
+              {...methods.register('name')}
+              type="text"
+              id="title"
+              className="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#838C9D] !bg-transparent"
+              placeholder="Write better name for your course category"
             />
           </div>
-          {data.formState.errors.studentId && (
+          {data.formState.errors.name && (
             <span className="text-red-500 text-sm">
-              {data.formState.errors.studentId.message}
+              {data.formState.errors.name.message}
             </span>
           )}
         </div>
@@ -61,7 +48,7 @@ const AddStudent = () => {
             disabled={data.isSubmitting}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap cursor-pointer"
           >
-            Add Now
+            Create Now
           </button>
         </div>
       </form>
@@ -69,4 +56,4 @@ const AddStudent = () => {
   )
 }
 
-export default AddStudent
+export default CreateCategory

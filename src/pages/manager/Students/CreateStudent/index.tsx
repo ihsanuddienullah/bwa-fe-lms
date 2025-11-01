@@ -172,6 +172,7 @@ const CreateStudent = () => {
           </button>
           <button
             type="submit"
+            disabled={data.isSubmitting}
             className="cursor-pointer w-full rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap"
           >
             {data.studentId ? 'Edit' : 'Add'} Now

@@ -57,6 +57,7 @@ const useCustom = () => {
     },
     onSuccess: () => {
       toast.success('Course created successfully')
+      navigate('/manager/courses')
     },
   })
 
@@ -71,6 +72,7 @@ const useCustom = () => {
     },
     onSuccess: () => {
       toast.success('Course updated successfully')
+      navigate('/manager/courses')
     },
   })
 
@@ -82,12 +84,11 @@ const useCustom = () => {
         } else {
           await createCourseMutation.mutateAsync(value as TCreateCourse)
         }
-        navigate('/manager/courses')
       } catch (error) {
         console.log(error)
       }
     },
-    [courseId, updateCourseMutation, createCourseMutation, navigate]
+    [courseId, updateCourseMutation, createCourseMutation]
   )
 
   const onThumbnailChange = useCallback(
