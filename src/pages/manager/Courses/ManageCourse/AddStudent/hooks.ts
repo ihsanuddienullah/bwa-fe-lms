@@ -56,6 +56,7 @@ const useCustom = () => {
     data: {
       formState,
       students,
+      isSubmitting: addCourseStudentMutation.isPending,
     },
     methods: {
       register,

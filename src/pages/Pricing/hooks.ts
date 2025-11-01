@@ -1,9 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
 import { useCallback } from 'react'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router'
 import { signUp } from '../../api/services/auth-service'
 import type { TSignUp } from '../SignUp/types'
 
 const useCustom = () => {
+  const navigate = useNavigate()
+
   const { isPending, mutateAsync } = useMutation({
     mutationFn: (payload: TSignUp) => signUp(payload),
   })
@@ -11,7 +15,11 @@ const useCustom = () => {
   const handleCheckout = useCallback(async () => {
     const data = localStorage.getItem('signUpData')
 
-    if (!data) return
+    if (!data) {
+      toast.error('You need to sign up first')
+      navigate('/sign-up')
+      return
+    }
 
     try {
       const parsedData = JSON.parse(data)

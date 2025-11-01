@@ -121,6 +121,8 @@ const useCustom = () => {
       formState,
       photoPreview,
       studentId,
+      isSubmitting:
+        createStudentMutation.isPending || updateStudentMutation.isPending,
     },
     methods: {
       handleDeletePreview,

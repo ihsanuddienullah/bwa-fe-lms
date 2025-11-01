@@ -58,7 +58,7 @@ const AddStudent = () => {
         <div className="flex items-center justify-end gap-[14px]">
           <button
             type="submit"
-            // disabled={data.isSubmitting}
+            disabled={data.isSubmitting}
             className="w-fit rounded-full p-[14px_20px] font-semibold text-[#FFFFFF] bg-[#662FFF] text-nowrap cursor-pointer"
           >
             Add Now
